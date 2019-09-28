@@ -1,0 +1,30 @@
+sensor.weather_wind_speed:
+  friendly_name: Wind
+  icon: mdi:speedometer
+
+sensor.weather_symbol:
+  friendly_name: Huidig weer
+
+sensor.3dprinter_current_state:
+  friendly_name: Status
+  icon: mdi:printer-3d
+
+sensor.3dprinter_job_percentage:
+  friendly_name: "Job %"
+  icon: mdi:percent
+
+sensor.3dprinter_target_bed_temp:
+  friendly_name: "Bed Temp (target)"
+  icon: mdi:vector-square
+
+sensor.3dprinter_actual_bed_temp:
+  friendly_name: "Bed Temp (actual)"
+  icon: mdi:vector-square
+
+sensor.3dprinter_actual_tool0_temp:
+  friendly_name: "Tool Temp (actual)"
+  icon: mdi:temperature-celsius
+
+sensor.3dprinter_target_tool0_temp:
+  friendly_name: "Tool Temp (target)"
+  icon: mdi:temperature-celsius

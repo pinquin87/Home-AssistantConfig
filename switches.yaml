@@ -1,0 +1,125 @@
+# Switches
+
+  - platform: mqtt
+    name: "Zolder"
+    state_topic: "home/RF2toMQTT"
+    command_topic: "home/commands/MQTTtoRF2/CODE_2694144/UNIT_1/PERIOD_272"
+    payload_on: "1"
+    payload_off: "0"
+    optimistic: true
+    retain: true
+
+  - platform: mqtt
+    name: "Woonkmr_hektar3"
+    state_topic: "home/RF2toMQTT"
+    command_topic: "home/commands/MQTTtoRF2/CODE_5241856/UNIT_2/PERIOD_272"
+    payload_on: "1"
+    payload_off: "0"
+    optimistic: true
+    retain: true
+  - platform: mqtt
+    name: "Woonkmr_knubbig"
+    state_topic: "home/RF2toMQTT"
+    command_topic: "home/commands/MQTTtoRF2/CODE_5241856/UNIT_1/PERIOD_272"
+    payload_on: "1"
+    payload_off: "0"
+    optimistic: true
+    retain: true
+  - platform: mqtt
+    name: "Woonkmr_hektar_bank"
+    state_topic: "home/RF2toMQTT"
+    command_topic: "home/commands/MQTTtoRF2/CODE_5241856/UNIT_3/PERIOD_272"
+    payload_on: "1"
+    payload_off: "0"
+    optimistic: true
+    retain: true
+  - platform: mqtt
+    name: "Woonkmr_hektar_mid"
+    state_topic: "home/RF2toMQTT"
+    command_topic: "home/commands/MQTTtoRF2/CODE_5241856/UNIT_4/PERIOD_272"
+    payload_on: "1"
+    payload_off: "0"
+    optimistic: true
+    retain: true
+  - platform: mqtt
+    name: "Kerstboom"
+    state_topic: "home/RF2toMQTT"
+    command_topic: "home/commands/MQTTtoRF2/CODE_21093376/UNIT_1/PERIOD_272"
+    payload_on: "1"
+    payload_off: "0"
+    optimistic: true
+    retain: true
+
+  - platform: mqtt
+    name: "Schuur_buiten"
+    state_topic: "home/RF2toMQTT"
+    command_topic: "home/commands/MQTTtoRF2/CODE_5423104/UNIT_2/PERIOD_262"
+    payload_on: "1"
+    payload_off: "0"
+    optimistic: true
+    retain: true
+ 
+  - platform: mqtt
+    name: "Tuin_lampjes"
+    state_topic: "home/RF2toMQTT"
+    command_topic: "home/commands/MQTTtoRF2/CODE_5423104/UNIT_1/PERIOD_262"
+    payload_on: "1"
+    payload_off: "0"
+    optimistic: true
+    retain: true
+
+  - platform: mqtt
+    name: "Electrische_Deken"
+    state_topic: "stat/sonoff/POWER"
+    command_topic: "cmnd/sonoff/POWER"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+  - platform: mqtt
+    name: "3dprinter"
+    state_topic: "stat/sonoff1/POWER"
+    command_topic: "cmnd/sonoff1/POWER"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+  - platform: mqtt
+    name: "TV"
+    state_topic: "stat/sonoff3/POWER1"
+    command_topic: "cmnd/sonoff3/POWER1"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+  - platform: mqtt
+    name: "Sonoff3"
+    state_topic: "stat/sonoff2/POWER1"
+    command_topic: "cmnd/sonoff2/POWER1"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+  - platform: mqtt
+    name: "Wasmachine"
+    state_topic: "stat/sonoff4/POWER1"
+    command_topic: "cmnd/sonoff4/POWER1"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+
+  - platform: mqtt
+    name: "TV OnOff"
+    command_topic: "cmnd/multisensorwk/irsend"
+    qos: 1
+    payload_on: "{\"Protocol\":\"RC6\", \"Bits\":20, \"Data\":\"0xC\"}"
+    payload_off: "{\"Protocol\":\"RC6\", \"Bits\":20, \"Data\":\"0xC\"}"
+    retain: true
+  - platform: mqtt
+    name: "Audio OnOff"
+    command_topic: "cmnd/multisensorwk/irsend"
+    qos: 1
+    payload_on: "{\"Protocol\":\"NEC\", \"Bits\":32, \"Data\":\"0x8322E11E\"}"
+    payload_off: "{\"Protocol\":\"RC6\", \"Bits\":20, \"Data\":\"0x8322E11E\"}"
+    retain: true

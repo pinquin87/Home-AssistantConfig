@@ -1,0 +1,104 @@
+#groups
+default_view:
+  view: yes
+  icon: mdi:home
+  entities:
+    - group.people
+    - group.powerusages
+    - group.thermostaat
+    - group.weather
+
+woonkamer:
+  name: Woonkamer
+  view: yes
+  entities:
+    - sensor.downstairs_thermostat_temperature
+    - sensor.downstairs_thermostat_humidity
+    - group.woonkamer_groep
+    - media_player.woonkamer
+    - group.TV
+
+woonkamer groep:
+  view: no
+  entities:
+    - switch.Woonkmr_hektar3
+    - switch.Woonkmr_knubbig
+    - switch.Woonkmr_hektar_bank
+    - switch.Woonkmr_hektar_mid
+    - switch.kerstboom
+
+slaapkamer:
+  name: Slaapkamer
+  view: yes
+  control: hidden
+  entities:
+    - switch.electrische_deken
+
+zolder:
+  name: Zolder
+  view: yes
+  entities:
+    - sensor.zolder_temp
+    - sensor.zolder_luchtvochtigheid
+    - switch.Zolder
+    - switch.Wasmachine
+    - sensor.wasmachine_energie_verbruik
+
+buiten:
+  name: Buiten
+  view: yes
+  control: hidden
+  entities:
+    - switch.schuur_buiten
+
+3dprinter:
+  name: 3dprinter
+  icon: mdi:printer-3d
+  view: yes
+  control: hidden
+  entities:
+    - switch.3dprinter
+    - sensor.3dPrinter_current_state
+    - sensor.3dPrinter_job_percentage
+    - sensor.3dPrinter_target_bed_temp
+    - sensor.3dPrinter_actual_bed_temp
+    - sensor.3dPrinter_target_tool0_temp
+    - sensor.3dPrinter_actual_tool0_temp
+    - camera.octoprint
+    
+
+people:
+  name: People
+  view: no
+  entities:
+    - device_tracker.Fabian
+    - device_tracker.unifi_58_cb_52_8a_44_2e_default
+
+thermostaat:
+  name: Thermostaat
+  view: no
+  entities:
+    - sensor.downstairs_thermostat_humidity
+    - climate.downstairs
+
+weather:
+  name: Weer
+  view: no
+  entities:
+    - weather.Enschede
+
+powerusages:
+  name: Energie Verbruik
+  view: no
+  entities:
+    - sensor.Current_Power_Usage
+    - sensor.wasmachine_energie_verbruik
+
+TV:
+  name: TV
+  view: no
+  entities:
+    - switch.tv
+    - switch.TV_OnOff
+    - switch.Audio_OnOff
+    

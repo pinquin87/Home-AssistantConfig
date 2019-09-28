@@ -1,0 +1,199 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret latitude
+  longitude: !secret longitude
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 48
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/Amsterdam
+  # Customization file
+  customize: !include customize.yaml
+  
+# Show links to resources in log and frontend
+# introduction:
+
+# Enables the frontend
+frontend:
+
+# System Health
+system_health:
+
+# Enable map
+map:
+
+panel_iframe:
+  grafana:
+    title: Grafana
+    icon: mdi:chart-timeline
+    url: https://fabiantubbing.duckdns.org:3000
+
+# Enables configuration UI
+config:
+
+http:
+  # Uncomment this to add a password (recommended!)
+  api_password: !secret http_password
+  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+  base_url: fabiantubbing.duckdns.org
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+
+# iOS  component
+ios:
+
+# Enable Homekit
+homekit:
+
+# MQTT
+mqtt:
+  password: !secret mqtt_password
+  # embedded:
+    # listeners:
+      # default:
+        # max-connections: 5000
+        # bind: 0.0.0.0:1883
+        # type: tcp
+      # ws-1:
+          # bind: 0.0.0.0:8181
+          # type: ws
+    # auth:
+      # plugins: ['auth.anonymous']
+      # allow-anonymous: true
+    # topic-check:
+      # enabled: True
+      # plugins:
+        # - topic.taboo
+  # broker: 0.0.0.0
+  # port: 1883
+
+# Nest component
+nest:
+  client_id: !secret nest_client_id
+  client_secret: !secret nest_client_secret
+
+#climate:
+#  platform: nest
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+  exclude:
+    entities:
+      - sensor.date
+      - sensor.time
+      - sensor.date_time
+
+# Recorder settings
+recorder:
+  purge_keep_days: 16
+  exclude:
+    entities:
+      - sensor.last_boot
+      - sensor.time
+      - sensor.date
+      - sensor.date_time
+      - sensor.3d_printer_time_elapsed
+      - sensor.3d_printer_time_remaining
+      - sensor.3d_printer_job_percentage
+
+# Influxdb for storing state data
+influxdb:
+  port: 8086
+  database: homeassistant
+  username: homeassistant
+  password: !secret influxdb_password
+  max_retries: 3
+  default_measurement: state
+  exclude:
+    entities:
+      - sensor.time
+      - sensor.date
+      - sensor.date_time
+      
+# Track the sun
+sun:
+
+# Text to speech
+tts:
+  - platform: google_translate
+    service_name: google_say
+
+weather:
+  - platform: buienradar
+    name: Enschede
+    forecast: True
+
+google_assistant:
+  project_id: !secret google_project_id
+  api_key: !secret google_api_key
+  exposed_domains: 
+    - light
+    - switch
+    - group
+    - media_player
+    - climate
+
+# Google calendar
+google:
+  client_id: calendar_client_id
+  client_secret: calendar_client_secret
+  track_new_calendar: false
+
+# Octoprint config  
+octoprint:
+  host: 192.168.2.120
+  api_key: octoprint_api_key
+  name: 3d-Printer
+  bed: true
+  number_of_tools: 1
+  sensors:
+    monitored_conditions:
+    - 'Current State'
+    - 'Temperatures'
+    - 'Job Percentage'
+    - 'Time Elapsed'
+    - 'Time Remaining'
+
+# Octoprint Camera
+camera:
+  - platform: mjpeg
+    name: Octoprint
+    still_image_url: http://192.168.2.120/webcam/?action=snapshot
+    mjpeg_url: http://192.168.2.120/webcam/?action=stream
+
+# Motion detection sensor (PIR)
+binary_sensor:
+  - platform: mqtt
+    name: "Woonkamer bewegings sensor"
+    state_topic: "stat/multisensorwk/POWER"
+    payload_on: "ON"
+    payload_off: "OFF"
+    qos: 1
+    
+# Includes
+sensor: !include sensors.yaml
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+switch: !include switches.yaml

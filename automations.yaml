@@ -1,0 +1,121 @@
+- id: e36d70363e714edca940cdd31d3b3ea7
+  alias: ElectrischeDekenUit
+  trigger:
+  - entity_id: switch.electrische_deken
+    for: 01:30:00
+    from: 'off'
+    platform: state
+    to: 'on'
+  action:
+  - entity_id: switch.electrische_deken
+    service: switch.turn_off
+- id: 90dadca3afd449f1b86bc92904ffa006
+  alias: VerwarmingAan
+  trigger:
+  - entity_id: group.people
+    from: not_home
+    platform: state
+    to: home
+  condition:
+  - after: '7:00'
+    before: '21:59'
+    condition: time
+  action:
+  - data:
+      entity_id: climate.downstairs
+      preset_mode: none
+    service: climate.set_preset_mode
+  - data:
+      entity_id: climate.downstairs
+      hvac_mode: heat
+    service: climate.set_hvac_mode
+  - data:
+      entity_id: climate.downstairs
+      temperature: 19
+    service: climate.set_temperature
+- alias: VerwarmingUit
+  trigger:
+    platform: state
+    entity_id: group.people
+    from: home
+    to: not_home
+  action:
+  - service: climate.set_preset_mode
+    data:
+      entity_id: climate.downstairs
+      preset_mode: away
+  - service: homeassistant.turn_off
+    data:
+      entity_id: group.woonkamer_groep
+  id: 45cb90b5728f4866b783af601e9f497a
+- alias: woonkmrLampenAan
+  trigger:
+    platform: sun
+    event: sunset
+    offset: -01:00:00
+  condition:
+  - condition: state
+    entity_id: group.people
+    state: home
+  action:
+  - service: homeassistant.turn_on
+    data:
+      entity_id: group.woonkamer_groep
+  id: ee4548b0219c4215b3ce51e7e0442aed
+- id: '1547220645338'
+  alias: iPad opladen
+  trigger:
+  - below: '15'
+    entity_id: sensor.ipad_van_fabian_battery_level
+    platform: numeric_state
+  condition: []
+  action:
+  - data:
+      message: iPad batterij onder 15%, opladen!
+    service: notify.ios_fabian
+- id: '1547221368193'
+  alias: Wasmachine klaar
+  trigger:
+  - below: '10'
+    entity_id: sensor.wasmachine_energie_verbruik
+    for: 00:05:00
+    platform: numeric_state
+  condition:
+  - condition: state
+    entity_id: switch.wasmachine
+    state: 'on'
+  action:
+  - data:
+      message: Wasmachine is klaar!!
+    service: notify.ios_fabian
+  - data:
+      message: Wasmachine is klaar!!
+    service: notify.ios_myrthe
+- id: '1549731767373'
+  alias: 3d Printer klaar
+  trigger:
+  - entity_id: sensor.3d_printer_current_state
+    from: Printing
+    platform: state
+    to: Operational
+  condition: []
+  action:
+  - data:
+      message: 3d Printer is klaar!!
+    service: notify.ios_fabian
+- id: '1550777256941'
+  alias: VerwarmingAanKalender
+  trigger:
+  - platform: template
+    value_template: '{% set work_start = ( [states.calendar.werk_rooster_fabian.attributes.start_time,states.calendar.werk_rooster_myrthe.attributes.start_time]
+      | min ) %} {% set work_time = strptime(work_start,"%Y-%m-%d %H:%M:%S") %} {%
+      set heat_time = work_time.replace(hour=work_time.hour-2) %} {{ strptime(states.sensor.date_time.state,
+      "%Y-%m-%d, %H:%M") == heat_time }}'
+  condition:
+  - condition: state
+    entity_id: group.people
+    state: home
+  action:
+  - data:
+      entity_id: automation.verwarmingaan
+    service: automation.trigger

@@ -1,0 +1,57 @@
+title: Home Assistant
+# Include external resources
+resources:
+  - url: /local/my-custom-card.js
+    type: js
+  - url: /local/my-webfont.css
+    type: css
+
+# Optional background for all views. Check https://developer.mozilla.org/en-US/docs/Web/CSS/background for more examples.
+background: center / cover no-repeat url("/background.png") fixed
+# Exclude entities from "Unused entities" view
+excluded_entities:
+  - weblink.router
+views:
+  - title: Custom View
+    icon: mdi:home-assistant
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - id: 44c282cd23ed4fcab17e3d336dbdfd9e  # Automatically created id
+                type: entities
+                title: Personen
+                entities:
+                  - device_tracker.myrthe
+                  - device_tracker.fabian
+                card:
+                  - type: glance
+                  - titel: Personen
+
+              - id: c04ab80fc590417fb9c6acc0d1006164  # Automatically created id
+                type: sensor
+                entity: sensor.current_power_usage
+                name: Stroomverbruik
+                graph: none
+                icon: mdi:flash
+
+      - type: entities
+        title: Klimaat
+        entities:
+          - sensor.zolder_temp
+          - sensor.zolder_luchtvochtigheid
+          - sensor.kelder_temp
+          - sensor.kelder_luchtvochtigheid
+
+      - id: de4fc040dc064d6c83612f7cbc944e0b  # Automatically created id
+        type: thermostat
+        entity: climate.downstairs
+        
+      - id: 69a737810c6e45c8968c4493447ff404  # Automatically created id
+        type: weather-forecast
+        entity: weather.enschede
+
+      - type: iframe
+        url: https://embed.windy.com/embed2.html?lat=51.876&lon=5.669&zoom=6&level=surface&overlay=temp&menu=&message=true&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&detailLat=51.963&detailLon=7.625&metricWind=m%2Fs&metricTemp=default&radarRange=-1
+        aspect_ratio: 75%
