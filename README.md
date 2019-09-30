@@ -48,14 +48,14 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-[commits-shield]: https://img.shields.io/github/commit-activity/y/pinquin87/home-assistant-config.svg
-[commits]: https://github.com/pinquin87/home-assistant-config/commits/master
-[contributors]: https://github.com/pinquin87/home-assistant-config/graphs/contributors
+[commits-shield]: https://img.shields.io/github/commit-activity/y/pinquin87/Home-AssistantConfig.svg
+[commits]: https://github.com/pinquin87/Home-AssistantConfig/commits/master
+[contributors]: https://github.com/pinquin87/Home-AssistantConfig/graphs/contributors
 [pinquin87]: https://github.com/pinquin87
 [home-assistant]: https://home-assistant.io
-[license-shield]: https://img.shields.io/github/license/pinquin87/home-assistant-config.svg
+[license-shield]: https://img.shields.io/github/license/pinquin87/Home-AssistantConfig.svg
 [maintenance-shield]: https://img.shields.io/maintenance/yes/2019.svg
-[last-commit-shield]: https://img.shields.io/github/last-commit/pinquin87/home-assistant-config.svg
-[stars-shield]: https://img.shields.io/github/stars/pinquin87/home-assistant-config.svg?style=social&label=Stars
-[forks-shield]: https://img.shields.io/github/forks/pinquin87/home-assistant-config.svg?style=social&label=Forks
-[watchers-shield]: https://img.shields.io/github/watchers/pinquin87/home-assistant-config.svg?style=social&label=Watchers
+[last-commit-shield]: https://img.shields.io/github/last-commit/pinquin87/Home-AssistantConfig.svg
+[stars-shield]: https://img.shields.io/github/stars/pinquin87/Home-AssistantConfig.svg?style=social&label=Stars
+[forks-shield]: https://img.shields.io/github/forks/pinquin87/Home-AssistantConfig.svg?style=social&label=Forks
+[watchers-shield]: https://img.shields.io/github/watchers/pinquin87/Home-AssistantConfig.svg?style=social&label=Watchers
