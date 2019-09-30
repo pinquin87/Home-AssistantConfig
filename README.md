@@ -14,6 +14,8 @@
 
 This is my personal Home Assistant configuration, running my home automations.
 
+A overview of the Home Assistant configuration, automations and devices will follow soon.
+
 ## Contributing
 
 Please feel free to check out the code and feel free to contribute if you see any improvements!

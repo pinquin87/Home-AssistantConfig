@@ -1,4 +1,5 @@
 # Automations
+# TODO: Cleanup code.
 
 # Turn of electrical blanket after 1,5 hours.
 - id: e36d70363e714edca940cdd31d3b3ea7
@@ -12,6 +13,7 @@
   action:
   - entity_id: switch.electrische_deken
     service: switch.turn_off
+
 # Turn central heating on when someone comes home
 - id: 90dadca3afd449f1b86bc92904ffa006
   alias: VerwarmingAan
@@ -37,7 +39,8 @@
       entity_id: climate.downstairs
       temperature: 19
     service: climate.set_temperature
-# Turn central heating off when last person leaves home
+
+# Turn central heating and livingroom lights off when last person leaves home
 - alias: VerwarmingUit
   trigger:
     platform: state
@@ -53,7 +56,9 @@
     data:
       entity_id: group.woonkamer_groep
   id: 45cb90b5728f4866b783af601e9f497a
+
 # Turn livingroom lights on 1 hour before sunset
+# TODO: Combine with ligth sensor and current state of ligths
 - alias: woonkmrLampenAan
   trigger:
     platform: sun
@@ -68,6 +73,7 @@
     data:
       entity_id: group.woonkamer_groep
   id: ee4548b0219c4215b3ce51e7e0442aed
+
 # Ipad needs charging, send notification
 - id: '1547220645338'
   alias: iPad opladen
@@ -80,7 +86,9 @@
   - data:
       message: iPad batterij onder 15%, opladen!
     service: notify.ios_fabian
+
 # Washing machine finished, send notification
+# TODO: change notification Myrthe to Android phone.
 - id: '1547221368193'
   alias: Wasmachine klaar
   trigger:
@@ -99,6 +107,7 @@
   - data:
       message: Wasmachine is klaar!!
     service: notify.ios_myrthe
+
 # 3d printer finished, send notification
 - id: '1549731767373'
   alias: 3d Printer klaar
@@ -112,7 +121,9 @@
   - data:
       message: 3d Printer is klaar!!
     service: notify.ios_fabian
-# Turn on central heating 2 hours before first person has to go to work
+
+# Turn on central heating 2 hours before first person has to go to work when people home.
+# TODO: check for the individual person to be home.
 - id: '1550777256941'
   alias: VerwarmingAanKalender
   trigger:

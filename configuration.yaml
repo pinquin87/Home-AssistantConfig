@@ -154,13 +154,13 @@ google_assistant:
     - media_player
     - climate
 
-# Google calendar
+# Google calendar for work schedule
 google:
   client_id: calendar_client_id
   client_secret: calendar_client_secret
   track_new_calendar: false
 
-# Octoprint config  
+# Octoprint config
 octoprint:
   host: 192.168.2.120
   api_key: octoprint_api_key
@@ -183,6 +183,7 @@ camera:
     mjpeg_url: http://192.168.2.120/webcam/?action=stream
 
 # Motion detection sensor (PIR)
+# TODO: Move to different file for binary sensors.
 binary_sensor:
   - platform: mqtt
     name: "Woonkamer bewegings sensor"

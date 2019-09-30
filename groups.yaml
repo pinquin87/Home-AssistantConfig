@@ -8,6 +8,7 @@ default_view:
     - group.thermostaat
     - group.weather
 
+# Livingroom
 woonkamer:
   name: Woonkamer
   view: yes
@@ -18,6 +19,7 @@ woonkamer:
     - media_player.woonkamer
     - group.TV
 
+# Livingroom lights
 woonkamer groep:
   view: no
   entities:
@@ -27,6 +29,7 @@ woonkamer groep:
     - switch.Woonkmr_hektar_mid
     - switch.kerstboom
 
+# Bedroom
 slaapkamer:
   name: Slaapkamer
   view: yes
@@ -34,6 +37,7 @@ slaapkamer:
   entities:
     - switch.electrische_deken
 
+# Attic
 zolder:
   name: Zolder
   view: yes
@@ -44,13 +48,16 @@ zolder:
     - switch.Wasmachine
     - sensor.wasmachine_energie_verbruik
 
+# Outside
 buiten:
   name: Buiten
   view: yes
   control: hidden
   entities:
     - switch.schuur_buiten
+    - switch.tuin_lampjes
 
+# 3d printer entities
 3dprinter:
   name: 3dprinter
   icon: mdi:printer-3d
@@ -65,8 +72,8 @@ buiten:
     - sensor.3dPrinter_target_tool0_temp
     - sensor.3dPrinter_actual_tool0_temp
     - camera.octoprint
-    
 
+# People device trackers
 people:
   name: People
   view: no
@@ -74,6 +81,7 @@ people:
     - device_tracker.Fabian
     - device_tracker.unifi_58_cb_52_8a_44_2e_default
 
+# Nest thermostat
 thermostaat:
   name: Thermostaat
   view: no
@@ -81,12 +89,14 @@ thermostaat:
     - sensor.downstairs_thermostat_humidity
     - climate.downstairs
 
+# Weather 
 weather:
   name: Weer
   view: no
   entities:
     - weather.Enschede
 
+# Power usages sensors
 powerusages:
   name: Energie Verbruik
   view: no
@@ -94,6 +104,7 @@ powerusages:
     - sensor.Current_Power_Usage
     - sensor.wasmachine_energie_verbruik
 
+# TV related switches
 TV:
   name: TV
   view: no
