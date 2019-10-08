@@ -191,7 +191,15 @@ binary_sensor:
     payload_on: "ON"
     payload_off: "OFF"
     qos: 1
-    
+
+# HTML 5 Notifications
+notify:
+  - platform: html5
+    name: html5push
+    vapid_pub_key: !secret vapid_pub_key
+    vapid_prv_key: !secret vapid_prv_key
+    vapid_email: !secret vapid_email
+
 # Includes
 sensor: !include sensors.yaml
 group: !include groups.yaml

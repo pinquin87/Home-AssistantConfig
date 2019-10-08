@@ -91,6 +91,10 @@
   - data:
       entity_id: switch.wasmachine
     service: homeassistant.turn_off
+  - data:
+      message: Wasmachine is klaar!!
+      target: myrthe_pixel
+    service: notify.html5push
 - id: '1549731767373'
   alias: 3d Printer klaar
   trigger:
