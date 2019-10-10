@@ -36,6 +36,7 @@ slaapkamer:
   control: hidden
   entities:
     - switch.electrische_deken
+    - input_number.slider
 
 # Attic
 zolder:

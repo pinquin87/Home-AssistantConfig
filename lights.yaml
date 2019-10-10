@@ -1,0 +1,20 @@
+# Example configuration.yaml entry
+  - platform: mqtt
+    name: "LSC E14 RGB Light"
+    availability_topic: "tele/LSCE14RGB/LWT"
+    command_topic: "cmnd/LSCE14RGB/POWER"
+    state_topic: "stat/LSCE14RGB/RESULT"
+    state_value_template: "{{value_json.POWER}}"
+    brightness_command_topic: "cmnd/LSCE14RGB/Dimmer"
+    brightness_state_topic: "stat/LSCE14RGB/RESULT"
+    brightness_value_template: "{{value_json.Dimmer}}"
+    brightness_scale: 100
+    rgb_command_topic: "cmnd/LSCE14RGB/Color"
+    rgb_state_topic: "stat/LSCE14RGB/RESULT"
+    # RGB<->RGBW conversion
+    rgb_value_template: "{% set red = (value_json.Color.split(',')[0] | round(0)) %}{% set green = (value_json.Color.split(',')[1] | round(0)) %}{% set blue = (value_json.Color.split(',')[2] | round(0)) %}{% set white = (value_json.Color.split(',')[3] | round(0)) %}{{ red + white }},{{ green + white }},{{ blue + white }}"
+    rgb_command_template: "{% set white = ([red,green,blue]|min) %}{{ red - white }},{{ green - white }},{{ blue - white }},{{ white }}"
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"

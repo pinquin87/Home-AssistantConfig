@@ -200,9 +200,19 @@ notify:
     vapid_prv_key: !secret vapid_prv_key
     vapid_email: !secret vapid_email
 
+# Test slider
+input_number:
+  slider:
+    name: Electrischedeken Timer
+    initial: 30
+    min: 10
+    max: 59
+    step: 10
+
 # Includes
 sensor: !include sensors.yaml
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 switch: !include switches.yaml
+light: !include lights.yaml
