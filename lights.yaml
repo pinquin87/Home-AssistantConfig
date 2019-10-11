@@ -1,4 +1,7 @@
-# Example configuration.yaml entry
+# Lights
+
+# LSC E14 RGB light running Tasmota
+# Communication via MQTT
   - platform: mqtt
     name: "LSC E14 RGB Light"
     availability_topic: "tele/LSCE14RGB/LWT"

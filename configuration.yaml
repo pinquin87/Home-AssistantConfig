@@ -19,7 +19,7 @@ homeassistant:
 # Enables the frontend
 frontend:
 
-# System Health
+# Enable System Health
 system_health:
 
 # Enable map
@@ -34,6 +34,8 @@ panel_iframe:
 # Enables configuration UI
 config:
 
+# http config
+# TODO: remove api_password and check if everything keeps working.
 http:
   # Uncomment this to add a password (recommended!)
   api_password: !secret http_password
@@ -49,7 +51,7 @@ http:
 # https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
 updater:
   # Optional, allows Home Assistant developers to focus on popular components.
-  # include_used_components: true
+  include_used_components: true
 
 # Discover some devices automatically
 discovery:
@@ -63,32 +65,11 @@ homekit:
 # MQTT
 mqtt:
   password: !secret mqtt_password
-  # embedded:
-    # listeners:
-      # default:
-        # max-connections: 5000
-        # bind: 0.0.0.0:1883
-        # type: tcp
-      # ws-1:
-          # bind: 0.0.0.0:8181
-          # type: ws
-    # auth:
-      # plugins: ['auth.anonymous']
-      # allow-anonymous: true
-    # topic-check:
-      # enabled: True
-      # plugins:
-        # - topic.taboo
-  # broker: 0.0.0.0
-  # port: 1883
 
 # Nest component
 nest:
   client_id: !secret nest_client_id
   client_secret: !secret nest_client_secret
-
-#climate:
-#  platform: nest
 
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
@@ -139,11 +120,13 @@ tts:
   - platform: google_translate
     service_name: google_say
 
+# Buienradar weather
 weather:
   - platform: buienradar
     name: Enschede
     forecast: True
 
+# Google Assistant for google home mini
 google_assistant:
   project_id: !secret google_project_id
   api_key: !secret google_api_key
@@ -192,7 +175,7 @@ binary_sensor:
     payload_off: "OFF"
     qos: 1
 
-# HTML 5 Notifications
+# HTML 5 Notifications used for Android notifications
 notify:
   - platform: html5
     name: html5push
@@ -200,7 +183,7 @@ notify:
     vapid_prv_key: !secret vapid_prv_key
     vapid_email: !secret vapid_email
 
-# Test slider
+# Time slider for automation electrische deken uit
 input_number:
   slider:
     name: Electrischedeken Timer
