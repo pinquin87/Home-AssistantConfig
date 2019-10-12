@@ -1,0 +1,67 @@
+esphome:
+  name: esp_01_switch
+  platform: ESP8266
+  board: esp01_1m
+
+wifi:
+  ssid: !secret ESPHome_wifi_ssid
+  password: !secret ESPHome_wifi_key
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: !secret http_password
+
+ota:
+  password: !secret http_password
+
+binary_sensor:
+  - platform: gpio
+    name: "ESP_01_button"
+    pin:
+      number: GPIO14
+      mode: INPUT_PULLUP
+      inverted: True
+    on_press:
+      - switch.toggle: relay
+
+output:
+  - platform: esp8266_pwm
+    id: ESP_01_status_led
+    pin:
+      number: GPIO04
+      inverted: True
+
+light:
+  - platform: monochromatic
+    name: "ESP_01_led"
+    output: ESP_01_status_led
+    id: led
+
+switch:
+  - platform: gpio
+    pin: GPIO12
+    id: relay
+  - platform: template
+    name: "ESP_01_relay"
+    optimistic: true
+    id: relayandled
+    turn_on_action:
+    - switch.turn_on: relay
+    - light.turn_on: led
+    turn_off_action:
+    - switch.turn_off: relay
+    - light.turn_off: led
+
+sensor:
+  - platform: wifi_signal
+    name: "ESP_01_wifi_signal"
+    update_interval: 60s
+  - platform: uptime
+    name: "ESP_01_uptime"
+
+text_sensor:
+  - platform: version
+    name: "ESP_01_ESPHome_version"

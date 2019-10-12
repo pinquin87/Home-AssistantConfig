@@ -25,6 +25,7 @@ system_health:
 # Enable map
 map:
 
+# Grafan iframe
 panel_iframe:
   grafana:
     title: Grafana
