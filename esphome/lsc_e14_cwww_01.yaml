@@ -20,28 +20,20 @@ ota:
 output:
   - platform: esp8266_pwm
     id: "esp_gpio12"
-    frequency: 880 Hz
     pin:
       number: GPIO12
-      inverted: False
-    min_power: 0.10
-    max_power: 0.80
 
   - platform: esp8266_pwm
     id: "esp_gpio14"
-    frequency: 880 Hz
     pin:
       number: GPIO14
-      inverted: False
-    min_power: 0.10
-    max_power: 0.80
 
 light:
   - platform: cwww
     name: "lsc_e14_cwww_01"
-    restore_mode: RESTORE_DEFAULT_ON
+    restore_mode: ALWAYS_ON
     cold_white: esp_gpio14
     warm_white: esp_gpio12
-    cold_white_color_temperature: 2700 K
-    warm_white_color_temperature: 1800 K
+    cold_white_color_temperature: 6500 K
+    warm_white_color_temperature: 2700 K
     default_transition_length: 2s

@@ -25,7 +25,7 @@ binary_sensor:
       mode: INPUT_PULLUP
       inverted: True
     on_press:
-      - switch.toggle: relay
+      - switch.toggle: relayandled
 
 output:
   - platform: esp8266_pwm
