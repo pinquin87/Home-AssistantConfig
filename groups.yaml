@@ -13,8 +13,6 @@ woonkamer:
   name: Woonkamer
   view: yes
   entities:
-    - sensor.downstairs_thermostat_temperature
-    - sensor.downstairs_thermostat_humidity
     - group.woonkamer_groep
     - media_player.woonkamer
     - group.TV
@@ -43,8 +41,6 @@ zolder:
   name: Zolder
   view: yes
   entities:
-    - sensor.zolder_temp
-    - sensor.zolder_luchtvochtigheid
     - switch.Zolder
     - switch.Wasmachine
     - sensor.wasmachine_energie_verbruik
