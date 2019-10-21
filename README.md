@@ -12,9 +12,43 @@
 
 ## About
 
-This is my personal Home Assistant configuration, running my home automations.
+This is my personal Home Assistant configuration, running my home automations. For more information about Home Assistant, see their website: https://www.home-assistant.io.
+
+My Home Assistant runs on Hass.io. Hassio runs on Ubuntu server OS. This is hosted on a Dell Precision M4600 laptop running ESXi 6.7. I've upgraded to this from a Raspberry Pi for better performance and reliability.
 
 A overview of the Home Assistant configuration, automations and devices will follow soon.
+
+### Infrastructure
+- Dell Precision M4600 laptop running VMWare ESXi.
+- VM for Hass.io running Ubuntu server 18.04 LTS.
+- VM for Plex.tv running Ubuntu server 18.04 LTS.
+
+### Devices
+- ?x ESP8266 devices running ESPHome, Tasmota or custom firmware.
+- 3x Sonof Basic running Tasmota.
+- 2x Sonof Pow 2 running Tasmota. 
+- 8x Action 433Mhz power plug.
+- 2x LSC Smart Connect RGB ligts (running Tasmota)
+- 4x LSC Smart Connect cwww lights (running ESPHome)
+- ESP8266 as a MQTT to 433Mhz gateway.
+- Nest thermostat.
+- Apple TV HD (4th gen).
+- Google Home Mini.
+- Ubiquiti UniFi AP AC LR acces point.
+- Multiple IOS and Android mobile devices.
+
+### Hass.io add-ons
+- InfluxDB
+- Grafana
+- DuckDNS
+- ESPHome
+- Pi-hole
+- Unifi Controller
+- Visual Studio Code
+- SSH & Web Terminal
+
+### Presence detection
+Presence detection is done via the IOS app and for Android via the Unifi integration.
 
 ## Contributing
 
