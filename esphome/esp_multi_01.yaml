@@ -1,0 +1,48 @@
+esphome:
+  name: esp_multi_01
+  platform: ESP8266
+  board: esp01_1m
+wifi:
+  ssid: !secret ESPHome_wifi_ssid
+  password: !secret ESPHome_wifi_key
+# Enable logging
+logger:
+# Enable Home Assistant API
+api:
+  password: !secret http_password
+
+ota:
+  password: !secret http_password
+# Temp sensor 
+dallas:
+  - pin: GPIO12
+
+sensor:
+  - platform: dallas
+    address: 0x350516A2F5CFFF28
+    name: "Woonkamer Temp"
+    
+# Analog light sensor
+  - platform: adc
+    pin: A0
+    name: "Living Room Brightness"
+    update_interval: 60s
+
+# IR receiver
+remote_receiver:
+  pin:
+    number:  GPIO14
+    inverted: yes
+  dump: all
+
+# IR transmitter
+remote_transmitter:
+  pin: GPIO04
+  carrier_duty_percent: 50%
+
+# PIR sensor
+binary_sensor:
+  - platform: gpio
+    pin: GPIO05
+    name: "Woonkamer bewegings sensor"
+    device_class: motion

@@ -1,6 +1,8 @@
 # Switches
 # All switches using the MQTTtoRF2 are 433MHz kika protocol via an ESP8266 MQTT to 433MHz bridge.
 # Other switches are sonofs or IR via ESP8266(tasmota)
+# TODO: Migrate all ESP devices to ESPHome
+# TODO: Remove config here when it works via ESPHome
 
 # Lights attic
   - platform: mqtt
@@ -133,6 +135,8 @@
     retain: true
 
 # IR send for switching TV on and off.
+# Moving to ESP home.
+# TODO: Remove config here when it works via ESPHome
   - platform: mqtt
     name: "TV OnOff"
     command_topic: "cmnd/multisensorwk/irsend"
@@ -142,10 +146,12 @@
     retain: true
 
 # IR send for switching audio amp TV on and off.
+# Moving to ESP home.
+# TODO: Remove config here when it works via ESPHome
   - platform: mqtt
     name: "Audio OnOff"
     command_topic: "cmnd/multisensorwk/irsend"
     qos: 1
     payload_on: "{\"Protocol\":\"NEC\", \"Bits\":32, \"Data\":\"0x8322E11E\"}"
-    payload_off: "{\"Protocol\":\"RC6\", \"Bits\":20, \"Data\":\"0x8322E11E\"}"
+    payload_off: "{\"Protocol\":\"NEC\", \"Bits\":32, \"Data\":\"0x8322E11E\"}"
     retain: true
