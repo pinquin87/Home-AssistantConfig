@@ -24,12 +24,12 @@ A overview of the Home Assistant configuration, automations and devices will fol
 - VM for Plex.tv running Ubuntu server 18.04 LTS.
 
 ### Devices
-- ?x ESP8266 devices running ESPHome, Tasmota or custom firmware.
-- 3x Sonof Basic running Tasmota.
-- 2x Sonof Pow 2 running Tasmota. 
+- ?x Custom ESP8266 devices (mainly sensors) running ESPHome, Tasmota or custom firmware.
+- 3x Sonoff Basic running Tasmota.
+- 2x Sonoff Pow 2 running Tasmota. 
 - 8x Action 433Mhz power plug.
 - 2x LSC Smart Connect RGB ligts (running Tasmota)
-- 4x LSC Smart Connect cwww lights (running ESPHome)
+- 5x LSC Smart Connect cwww lights (running ESPHome)
 - ESP8266 as a MQTT to 433Mhz gateway.
 - Nest thermostat.
 - Apple TV HD (4th gen).

@@ -128,15 +128,13 @@
   alias: Lampen aan thuis komen als donker
   trigger:
   - entity_id: group.people
-    from: away
+    from: not_home
     platform: state
     to: home
   condition:
-  - after: sunset
-    after_offset: -01:00:00
-    condition: sun
-  - before: '23:30'
-    condition: time
+  - below: '0.30'
+    condition: numeric_state
+    entity_id: sensor.living_room_brightness
   action:
   - data:
       entity_id: group.woonkamer_groep
@@ -156,3 +154,34 @@
   - data:
       message: 'Waarschuwing: Hoog stroomverbruik!'
     service: notify.ios_fabian
+- id: '1572021344058'
+  alias: Tuin lampen aan thuiskomen
+  description: ''
+  trigger:
+  - entity_id: group.people
+    from: not_home
+    platform: state
+    to: home
+  condition:
+  - after: sunset
+    before: sunrise
+    condition: sun
+  action:
+  - alias: ''
+    data:
+      entity_id: switch.schuur_buiten
+    service: homeassistant.turn_on
+- id: '1572021985170'
+  alias: Tuin lamp uit na 10 min
+  description: ''
+  trigger:
+  - entity_id: group.people
+    for: 00:10:00
+    from: not_home
+    platform: state
+    to: home
+  condition: []
+  action:
+  - data:
+      entity_id: switch.schuur_buiten
+    service: homeassistant.turn_off
