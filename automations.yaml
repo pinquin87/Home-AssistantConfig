@@ -1,14 +1,14 @@
 - id: e36d70363e714edca940cdd31d3b3ea7
   alias: ElectrischeDekenUit
   trigger:
-  - entity_id: switch.electrische_deken
+  - entity_id: switch.esp_01_relay
     for: 00:{{ states.input_number.slider.state | int }}:00
     from: 'off'
     platform: state
     to: 'on'
   action:
   - data: {}
-    entity_id: switch.electrische_deken
+    entity_id: switch.esp_01_relay
     service: homeassistant.turn_off
 - id: 90dadca3afd449f1b86bc92904ffa006
   alias: VerwarmingAan
@@ -77,7 +77,7 @@
 - id: '1547221368193'
   alias: Wasmachine klaar
   trigger:
-  - below: '10'
+  - below: '6'
     entity_id: sensor.wasmachine_energie_verbruik
     for: 00:05:00
     platform: numeric_state
@@ -167,8 +167,7 @@
     before: sunrise
     condition: sun
   action:
-  - alias: ''
-    data:
+  - data:
       entity_id: switch.schuur_buiten
     service: homeassistant.turn_on
 - id: '1572021985170'

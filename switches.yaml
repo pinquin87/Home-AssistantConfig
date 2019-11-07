@@ -8,7 +8,7 @@
   - platform: mqtt
     name: "Zolder"
     state_topic: "home/RF2toMQTT"
-    command_topic: "home/commands/MQTTtoRF2/CODE_2694144/UNIT_1/PERIOD_272"
+    command_topic: "home/OpenMQTTGateway/commands/MQTTtoRF2/CODE_2694144/UNIT_1/PERIOD_272"
     payload_on: "1"
     payload_off: "0"
     optimistic: true

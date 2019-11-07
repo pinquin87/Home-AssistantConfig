@@ -25,7 +25,8 @@ system_health:
 # Enable map
 map:
 
-# Grafan iframe
+# Grafana iframe
+# Only works on internal network, port not forwarded.
 panel_iframe:
   grafana:
     title: Grafana
@@ -39,7 +40,7 @@ config:
 # TODO: remove api_password and check if everything keeps working.
 http:
   # Uncomment this to add a password (recommended!)
-  api_password: !secret http_password
+#  api_password: !secret http_password
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
   base_url: fabiantubbing.duckdns.org
   ssl_certificate: /ssl/fullchain.pem
@@ -64,8 +65,9 @@ ios:
 homekit:
 
 # MQTT
-mqtt:
-  password: !secret mqtt_password
+# Deprecated, moved to Mosquitto
+#mqtt:
+#  password: !secret mqtt_password
 
 # Nest component
 nest:
@@ -88,7 +90,7 @@ logbook:
 
 # Recorder settings
 recorder:
-  purge_keep_days: 16
+  purge_keep_days: 8
   exclude:
     entities:
       - sensor.last_boot

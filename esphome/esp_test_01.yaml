@@ -18,8 +18,54 @@ ota:
   password: !secret http_password
 
 # IR receiver
+#remote_receiver:
+#  pin:
+#    number:  GPIO14
+#    inverted: yes
+#  dump: all
+
+web_server:
+  port: 80
+
 remote_receiver:
-  pin:
-    number:  GPIO14
-    inverted: yes
-  dump: all
+  pin: GPIO14
+  dump:
+    - rc_switch
+  # Settings to optimize recognition of RF devices
+  tolerance: 50%
+  filter: 272us
+  idle: 4ms
+  buffer_size: 2kb
+
+remote_transmitter:
+  pin: GPIO04
+  # RF uses a 100% carrier signal
+  carrier_duty_percent: 100%
+
+switch:
+  - platform: template
+    name: Zolder
+    id: zolder_lamp
+    turn_on_action:
+      - remote_transmitter.transmit_rc_switch_raw:
+          code: '1010101010101010101010011010100110101010101010101010100110101001'
+          protocol: 8
+          repeat: 3
+    turn_off_action:
+      - remote_transmitter.transmit_rc_switch_raw:
+          code: '1010101010101010101010101010100110101010101010101010101010101001'
+          protocol: 8
+          repeat: 3
+  - platform: template
+    name: Knubbig
+    id: woonkmr_knubbig
+    turn_on_action:
+      - remote_transmitter.transmit_rc_switch_raw:
+          code: '1010101010101010101010011010100110101010101010101010100110101001'
+          protocol: 8
+          repeat: 3
+    turn_off_action:
+      - remote_transmitter.transmit_rc_switch_raw:
+          code: '1010101010101010101010101010100110101010101010101010101010101001'
+          protocol: 8
+          repeat: 3
