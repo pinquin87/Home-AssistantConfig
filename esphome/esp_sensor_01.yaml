@@ -1,0 +1,35 @@
+esphome:
+  name: esp_sensor_01
+  platform: ESP8266
+  board: esp01_1m
+
+wifi:
+  ssid: !secret ESPHome_wifi_ssid
+  password: !secret ESPHome_wifi_key
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Esp Sensor 01 Fallback Hotspot"
+    password: !secret ESPHome_hotspot
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: !secret http_password
+
+ota:
+  password: !secret http_password
+
+sensor:
+  - platform: dht
+    pin: GPIO14
+    model: DHT22
+    temperature:
+      name: "Kelder Temp"
+    humidity:
+      name: "Kelder Luchtvochtigheid"
+    update_interval: 300s

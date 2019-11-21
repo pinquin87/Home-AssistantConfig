@@ -7,8 +7,8 @@
 # Lights attic
   - platform: mqtt
     name: "Zolder"
-    state_topic: "home/RF2toMQTT"
-    command_topic: "home/OpenMQTTGateway/commands/MQTTtoRF2/CODE_2694144/UNIT_1/PERIOD_272"
+    state_topic: "home/OpenMQTTGateway/RF2toMQTT"
+    command_topic: "home/OpenMQTTGateway/commands/MQTTtoRF2/ADDRESS_2694144/UNIT_1/PERIOD_272"
     payload_on: "1"
     payload_off: "0"
     optimistic: true
@@ -17,8 +17,8 @@
 # Light Livingroom
   - platform: mqtt
     name: "Woonkmr_hektar3"
-    state_topic: "home/RF2toMQTT"
-    command_topic: "home/commands/MQTTtoRF2/CODE_5241856/UNIT_2/PERIOD_272"
+    state_topic: "home/OpenMQTTGateway/RF2toMQTT"
+    command_topic: "home/OpenMQTTGateway/commands/MQTTtoRF2/ADDRESS_5241856/UNIT_2/PERIOD_272"
     payload_on: "1"
     payload_off: "0"
     optimistic: true
@@ -27,8 +27,8 @@
 # Light Livingroom
   - platform: mqtt
     name: "Woonkmr_knubbig"
-    state_topic: "home/RF2toMQTT"
-    command_topic: "home/commands/MQTTtoRF2/CODE_5241856/UNIT_1/PERIOD_272"
+    state_topic: "home/OpenMQTTGateway/RF2toMQTT"
+    command_topic: "home/OpenMQTTGateway/commands/MQTTtoRF2/ADDRESS_5241856/UNIT_1/PERIOD_272"
     payload_on: "1"
     payload_off: "0"
     optimistic: true
@@ -37,8 +37,8 @@
 # Light Livingroom
   - platform: mqtt
     name: "Woonkmr_hektar_bank"
-    state_topic: "home/RF2toMQTT"
-    command_topic: "home/commands/MQTTtoRF2/CODE_5241856/UNIT_3/PERIOD_272"
+    state_topic: "home/OpenMQTTGateway/RF2toMQTT"
+    command_topic: "home/OpenMQTTGateway/commands/MQTTtoRF2/ADDRESS_5241856/UNIT_3/PERIOD_272"
     payload_on: "1"
     payload_off: "0"
     optimistic: true
@@ -47,8 +47,8 @@
 # Light Livingroom
   - platform: mqtt
     name: "Woonkmr_hektar_mid"
-    state_topic: "home/RF2toMQTT"
-    command_topic: "home/commands/MQTTtoRF2/CODE_5241856/UNIT_4/PERIOD_272"
+    state_topic: "home/OpenMQTTGateway/RF2toMQTT"
+    command_topic: "home/OpenMQTTGateway/commands/MQTTtoRF2/ADDRESS_5241856/UNIT_4/PERIOD_272"
     payload_on: "1"
     payload_off: "0"
     optimistic: true
@@ -57,8 +57,8 @@
 # Light Livingroom
   - platform: mqtt
     name: "Kerstboom"
-    state_topic: "home/RF2toMQTT"
-    command_topic: "home/commands/MQTTtoRF2/CODE_21093376/UNIT_1/PERIOD_272"
+    state_topic: "home/OpenMQTTGateway/OpenMQTTGateway/RF2toMQTT"
+    command_topic: "home/OpenMQTTGateway/commands/MQTTtoRF2/ADDRESS_21093376/UNIT_1/PERIOD_272"
     payload_on: "1"
     payload_off: "0"
     optimistic: true
@@ -67,18 +67,18 @@
 # Light shed outside
   - platform: mqtt
     name: "Schuur_buiten"
-    state_topic: "home/RF2toMQTT"
-    command_topic: "home/commands/MQTTtoRF2/CODE_5423104/UNIT_2/PERIOD_262"
+    state_topic: "home/OpenMQTTGateway/RF2toMQTT"
+    command_topic: "home/OpenMQTTGateway/commands/MQTTtoRF2/ADDRESS_5423104/UNIT_2/PERIOD_262"
     payload_on: "1"
     payload_off: "0"
     optimistic: true
     retain: true
- 
- # Lighstring backyard
+
+# Lighstring backyard
   - platform: mqtt
     name: "Tuin_lampjes"
-    state_topic: "home/RF2toMQTT"
-    command_topic: "home/commands/MQTTtoRF2/CODE_5423104/UNIT_1/PERIOD_262"
+    state_topic: "home/OpenMQTTGateway/RF2toMQTT"
+    command_topic: "home/OpenMQTTGateway/commands/MQTTtoRF2/ADDRESS_5423104/UNIT_1/PERIOD_262"
     payload_on: "1"
     payload_off: "0"
     optimistic: true

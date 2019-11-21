@@ -158,13 +158,16 @@
   alias: Tuin lampen aan thuiskomen
   description: ''
   trigger:
-  - entity_id: group.people
+  - entity_id: device_tracker.fabian
+    from: not_home
+    platform: state
+    to: home
+  - entity_id: device_tracker.unifi_58_cb_52_8a_44_2e_default
     from: not_home
     platform: state
     to: home
   condition:
   - after: sunset
-    before: sunrise
     condition: sun
   action:
   - data:

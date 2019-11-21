@@ -1,0 +1,41 @@
+esphome:
+  name: esp_powermeter_01
+  platform: ESP8266
+  board: esp01_1m
+
+wifi:
+  ssid: !secret ESPHome_wifi_ssid
+  password: !secret ESPHome_wifi_key
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Esp Powermeter 01"
+    password: !secret ESPHome_hotspot
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: !secret http_password
+
+ota:
+  password: !secret http_password
+
+# Sensor count led pulses, every puls is 1 WH.
+sensor:
+  - platform: pulse_counter
+    internal_filter: 50us
+    count_mode:
+        rising_edge: DISABLE
+        falling_edge: INCREMENT
+    pin: GPIO12
+    unit_of_measurement: 'W'
+    name: 'Current Power Usage'
+    accuracy_decimals: 0
+    update_interval: 60s
+    filters:
+      - multiply: 60
+      

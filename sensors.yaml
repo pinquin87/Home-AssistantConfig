@@ -15,27 +15,6 @@
     value_template: '{{ value | round(0) +10  }}'
     icon: mdi:water-percent
 
-# Temp sensor basement
-  - platform: mqtt
-    name: "Kelder Temp"
-    state_topic: "temp/woonkamer"
-    unit_of_measurement: "°C"
-    value_template: '{{ value | round(1) }}'
-
-# Humidity sensor basement
-  - platform: mqtt
-    name: "Kelder Luchtvochtigheid"
-    state_topic: "humidity/woonkamer"
-    unit_of_measurement: "%"
-    icon: mdi:water-percent
-    value_template: '{{ value | round(0) }}'
-
-# Power sensor on main power meter.
-  - platform: mqtt
-    name: "Current Power Usage"
-    state_topic: "home/meterkast/power"
-    unit_of_measurement: "W"
-
 # Power sensor washing machine (Sonof pow)
   - platform: mqtt
     name: "Wasmachine Energie verbruik"
@@ -50,13 +29,6 @@
     state_topic: "tele/multisensorwk/SENSOR"
     value_template: '{{ value_json.ANALOG.A0}}'
     qos: 1
-
-# Temp sensor livingroom
-  - platform: mqtt
-    name: "Woonkamer Temp"
-    state_topic: "tele/multisensorwk/SENSOR"
-    unit_of_measurement: "°C"
-    value_template: '{{ value_json.DS18B20.Temperature | round(1) }}'
 
 # Time sensor used for time triggerd automations
   - platform: time_date
