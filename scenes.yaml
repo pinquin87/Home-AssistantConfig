@@ -1,0 +1,15 @@
+- id: '1574340371169'
+  name: TV kijken
+  entities:
+    switch.kerstboom:
+      state: 'on'
+    switch.tv:
+      state: 'on'
+    switch.woonkmr_hektar3:
+      state: 'on'
+    switch.woonkmr_hektar_bank:
+      state: 'on'
+    switch.woonkmr_hektar_mid:
+      state: 'on'
+    switch.woonkmr_knubbig:
+      state: 'on'
