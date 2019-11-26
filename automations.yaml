@@ -73,7 +73,7 @@
   action:
   - data:
       message: iPad batterij onder 15%, opladen!
-    service: notify.ios_fabian
+    service: notify.mobile_app_fabian_iphone
 - id: '1547221368193'
   alias: Wasmachine klaar
   trigger:
@@ -88,7 +88,7 @@
   action:
   - data:
       message: Wasmachine is klaar!!
-    service: notify.ios_fabian
+    service: notify.mobile_app_fabian_iphone
   - data:
       entity_id: switch.wasmachine
     service: homeassistant.turn_off
@@ -107,7 +107,7 @@
   action:
   - data:
       message: 3d Printer is klaar!!
-    service: notify.ios_fabian
+    service: notify.mobile_app_fabian_iphone
 - id: '1550777256941'
   alias: VerwarmingAanKalender
   trigger:
@@ -153,7 +153,7 @@
   action:
   - data:
       message: 'Waarschuwing: Hoog stroomverbruik!'
-    service: notify.ios_fabian
+    service: notify.mobile_app_fabian_iphone
 - id: '1572021344058'
   alias: Tuin lampen aan thuiskomen
   description: ''
