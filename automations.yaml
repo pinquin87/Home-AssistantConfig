@@ -144,7 +144,7 @@
   trigger:
   - above: '600'
     entity_id: sensor.current_power_usage
-    for: 00:30:00
+    for: 00:15:00
     platform: numeric_state
   condition:
   - condition: state
@@ -158,7 +158,7 @@
   alias: Tuin lampen aan thuiskomen
   description: ''
   trigger:
-  - entity_id: device_tracker.fabian
+  - entity_id: device_tracker.fabian_iphone_2
     from: not_home
     platform: state
     to: home
@@ -177,8 +177,12 @@
   alias: Tuin lamp uit na 10 min
   description: ''
   trigger:
-  - entity_id: group.people
+  - entity_id: device_tracker.fabian_iphone_2
     for: 00:10:00
+    from: not_home
+    platform: state
+    to: home
+  - entity_id: device_tracker.myrthe
     from: not_home
     platform: state
     to: home

@@ -17,55 +17,41 @@ api:
 ota:
   password: !secret http_password
 
-# IR receiver
-#remote_receiver:
-#  pin:
-#    number:  GPIO14
-#    inverted: yes
-#  dump: all
-
 web_server:
   port: 80
+  
+# Test sensor
+binary_sensor:
+  - platform: gpio
+    id: pulsesensor
+    pin: 
+      number: GPIO15
+      inverted: False
+      mode: INPUT
+    name: "Pulse"
+    filters:
+      - delayed_on: 10ms
+      - delayed_off: 10ms
+    on_press:
+      then:
+        - output.turn_on: gpio_12
+    on_release:
+      then:
+        - output.turn_off: gpio_12
+        - component.update: pulsewidth 
 
-remote_receiver:
-  pin: GPIO14
-  dump:
-    - rc_switch
-  # Settings to optimize recognition of RF devices
-  tolerance: 50%
-  filter: 272us
-  idle: 4ms
-  buffer_size: 2kb
+output:
+  - platform: gpio
+    pin:
+      number: GPIO12
+    id: gpio_12
 
-remote_transmitter:
-  pin: GPIO04
-  # RF uses a 100% carrier signal
-  carrier_duty_percent: 100%
-
-switch:
-  - platform: template
-    name: Zolder
-    id: zolder_lamp
-    turn_on_action:
-      - remote_transmitter.transmit_rc_switch_raw:
-          code: '1010101010101010101010011010100110101010101010101010100110101001'
-          protocol: 8
-          repeat: 3
-    turn_off_action:
-      - remote_transmitter.transmit_rc_switch_raw:
-          code: '1010101010101010101010101010100110101010101010101010101010101001'
-          protocol: 8
-          repeat: 3
-  - platform: template
-    name: Knubbig
-    id: woonkmr_knubbig
-    turn_on_action:
-      - remote_transmitter.transmit_rc_switch_raw:
-          code: '1010101010101010101010011010100110101010101010101010100110101001'
-          protocol: 8
-          repeat: 3
-    turn_off_action:
-      - remote_transmitter.transmit_rc_switch_raw:
-          code: '1010101010101010101010101010100110101010101010101010101010101001'
-          protocol: 8
-          repeat: 3
+sensor:
+  - platform: pulse_width
+    id: pulsewidth
+    pin:
+      number: GPIO13
+      inverted: True
+    name: Pulse Width Sensor
+    filters:
+     - debounce: 0.1s

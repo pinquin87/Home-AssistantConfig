@@ -75,7 +75,7 @@ people:
   name: People
   view: no
   entities:
-    - device_tracker.Fabian
+    - device_tracker.fabian_iphone_2
     - device_tracker.unifi_58_cb_52_8a_44_2e_default
 
 # Nest thermostat

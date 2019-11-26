@@ -60,6 +60,7 @@ discovery:
 
 # iOS  component
 ios:
+mobile_app:
 
 # Enable Homekit
 homekit:
