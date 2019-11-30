@@ -200,7 +200,6 @@
     platform: sun
   condition: []
   action:
-  - alias: ''
     data:
       entity_id: switch.boom_buiten
     service: switch.turn_on
@@ -213,7 +212,6 @@
     platform: sun
   condition: []
   action:
-  - alias: ''
     data:
       entity_id: switch.boom_buiten
     service: switch.turn_off
