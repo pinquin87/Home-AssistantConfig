@@ -182,7 +182,7 @@
     from: not_home
     platform: state
     to: home
-  - entity_id: device_tracker.myrthe
+  - entity_id: device_tracker.unifi_58_cb_52_8a_44_2e_default
     from: not_home
     platform: state
     to: home

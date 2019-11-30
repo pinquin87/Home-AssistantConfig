@@ -84,7 +84,17 @@
     optimistic: true
     retain: true
 
-# Electrical heating blanked (Sonof)
+# Lights Tree front garden
+  - platform: mqtt
+    name: "Boom Buiten"
+    state_topic: "home/OpenMQTTGateway/RF2toMQTT"
+    command_topic: "home/OpenMQTTGateway/commands/MQTTtoRF2/ADDRESS_2694144/UNIT_2/PERIOD_272"
+    payload_on: "1"
+    payload_off: "0"
+    optimistic: true
+    retain: true
+
+# Electrical heating blanked (Sonof) OLD
   - platform: mqtt
     name: "Electrische_Deken"
     state_topic: "stat/sonoff/POWER"
