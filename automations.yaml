@@ -191,3 +191,29 @@
   - data:
       entity_id: switch.schuur_buiten
     service: homeassistant.turn_off
+- id: '1575108810940'
+  alias: Boomlampjes buiten aan
+  description: Lampjes in boom buiten 's nachts aan.
+  trigger:
+  - event: sunset
+    offset: -00:30:00
+    platform: sun
+  condition: []
+  action:
+  - alias: ''
+    data:
+      entity_id: switch.boom_buiten
+    service: switch.turn_on
+- id: '1575108876947'
+  alias: Boomlampje buiten uit
+  description: ''
+  trigger:
+  - event: sunrise
+    offset: 00:30:00
+    platform: sun
+  condition: []
+  action:
+  - alias: ''
+    data:
+      entity_id: switch.boom_buiten
+    service: switch.turn_off

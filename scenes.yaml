@@ -13,3 +13,24 @@
       state: 'on'
     switch.woonkmr_knubbig:
       state: 'on'
+- id: '1575109499554'
+  name: Naar bed
+  entities:
+    switch.kerstboom:
+      state: 'off'
+    switch.schuur_buiten:
+      state: 'off'
+    switch.tuin_lampjes:
+      state: 'off'
+    switch.tv:
+      state: 'off'
+    switch.woonkmr_hektar3:
+      state: 'off'
+    switch.woonkmr_hektar_bank:
+      state: 'off'
+    switch.woonkmr_hektar_mid:
+      state: 'off'
+    switch.woonkmr_knubbig:
+      state: 'off'
+    switch.zolder:
+      state: 'off'
