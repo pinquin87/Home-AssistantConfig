@@ -25,17 +25,39 @@ ota:
   password: !secret http_password
 
 # Sensor count led pulses, every puls is 1 WH.
-sensor:
-  - platform: pulse_counter
-    internal_filter: 50us
-    count_mode:
-        rising_edge: DISABLE
-        falling_edge: INCREMENT
-    pin: GPIO12
-    unit_of_measurement: 'W'
-    name: 'Current Power Usage'
-    accuracy_decimals: 0
-    update_interval: 60s
+binary_sensor:
+  - platform: gpio
+    id: pulsesensor
+    pin: 
+      number: GPIO12
+      inverted: False
+      mode: INPUT
     filters:
-      - multiply: 60
+      - delayed_on: 10ms
+      - delayed_off: 10ms
+    on_press:
+      then:
+        - output.turn_on: gpio_04
+    on_release:
+      then:
+        - output.turn_off: gpio_04
+        - component.update: pulsewidth 
+
+output:
+  - platform: gpio
+    pin:
+      number: GPIO04
+    id: gpio_04
+
+sensor:
+  - platform: pulse_width
+    id: pulsewidth
+    pin:
+      number: GPIO05
+      inverted: True
+    unit_of_measurement: 'W'
+    name: 'Power Meter'
+    accuracy_decimals: 0
+    filters:
+      - lambda: return (3600/x)  ;
       

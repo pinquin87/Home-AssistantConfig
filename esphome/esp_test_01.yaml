@@ -21,37 +21,4 @@ web_server:
   port: 80
   
 # Test sensor
-binary_sensor:
-  - platform: gpio
-    id: pulsesensor
-    pin: 
-      number: GPIO15
-      inverted: False
-      mode: INPUT
-    name: "Pulse"
-    filters:
-      - delayed_on: 10ms
-      - delayed_off: 10ms
-    on_press:
-      then:
-        - output.turn_on: gpio_12
-    on_release:
-      then:
-        - output.turn_off: gpio_12
-        - component.update: pulsewidth 
 
-output:
-  - platform: gpio
-    pin:
-      number: GPIO12
-    id: gpio_12
-
-sensor:
-  - platform: pulse_width
-    id: pulsewidth
-    pin:
-      number: GPIO13
-      inverted: True
-    name: Pulse Width Sensor
-    filters:
-     - debounce: 0.1s
