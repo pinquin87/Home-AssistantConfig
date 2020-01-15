@@ -21,4 +21,7 @@ web_server:
   port: 80
   
 # Test sensor
-
+remote_transmitter:
+  pin: GPIO12
+  # RF uses a 100% carrier signal
+  carrier_duty_percent: 100%
