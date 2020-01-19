@@ -1,0 +1,73 @@
+esphome:
+  name: esp_02_switch
+  platform: ESP8266
+  board: esp01_1m
+
+wifi:
+  ssid: !secret ESPHome_wifi_ssid
+  password: !secret ESPHome_wifi_key
+  
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Esp switch 02"
+    password: !secret ESPHome_hotspot
+
+captive_portal:
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: !secret http_password
+
+ota:
+  password: !secret http_password
+
+binary_sensor:
+  - platform: gpio
+    name: "ESP_02_button"
+    pin:
+      number: GPIO0
+      mode: INPUT_PULLUP
+      inverted: True
+    on_press:
+      - switch.toggle: relayandled
+
+output:
+  - platform: esp8266_pwm
+    id: ESP_02_status_led
+    pin:
+      number: GPIO13
+      inverted: True
+
+light:
+  - platform: monochromatic
+    name: "ESP_02_led"
+    output: ESP_02_status_led
+    id: led
+
+switch:
+  - platform: gpio
+    pin: GPIO12
+    id: relay
+  - platform: template
+    name: "ESP_02_relay"
+    optimistic: true
+    id: relayandled
+    turn_on_action:
+    - switch.turn_on: relay
+    - light.turn_on: led
+    turn_off_action:
+    - switch.turn_off: relay
+    - light.turn_off: led
+
+sensor:
+  - platform: wifi_signal
+    name: "ESP_02_wifi_signal"
+    update_interval: 60s
+  - platform: uptime
+    name: "ESP_02_uptime"
+
+text_sensor:
+  - platform: version
+    name: "ESP_02_ESPHome_version"

@@ -1,6 +1,5 @@
 # Switches
 # All switches using the MQTTtoRF2 are 433MHz kika protocol via an ESP8266 MQTT to 433MHz bridge.
-# Other switches are sonofs or IR via ESP8266(tasmota)
 # TODO: Migrate all ESP devices to ESPHome
 # TODO: Remove config here when it works via ESPHome
 
@@ -92,56 +91,6 @@
     payload_on: "1"
     payload_off: "0"
     optimistic: true
-    retain: true
-
-# Electrical heating blanked (Sonof) OLD
-  - platform: mqtt
-    name: "Electrische_Deken"
-    state_topic: "stat/sonoff/POWER"
-    command_topic: "cmnd/sonoff/POWER"
-    qos: 1
-    payload_on: "ON"
-    payload_off: "OFF"
-    retain: true
-
-# 3d printer (Sonof)
-  - platform: mqtt
-    name: "3dprinter"
-    state_topic: "stat/sonoff1/POWER"
-    command_topic: "cmnd/sonoff1/POWER"
-    qos: 1
-    payload_on: "ON"
-    payload_off: "OFF"
-    retain: true
-
-# Switch for turning the TV and related devices on and off (Sonof)
-  - platform: mqtt
-    name: "TV"
-    state_topic: "stat/sonoff3/POWER1"
-    command_topic: "cmnd/sonoff3/POWER1"
-    qos: 1
-    payload_on: "ON"
-    payload_off: "OFF"
-    retain: true
-
-# Placeholder extra Sonof, not in use
-  - platform: mqtt
-    name: "Sonoff3"
-    state_topic: "stat/sonoff2/POWER1"
-    command_topic: "cmnd/sonoff2/POWER1"
-    qos: 1
-    payload_on: "ON"
-    payload_off: "OFF"
-    retain: true
-
-# Washing machine switch (Sonof pow)
-  - platform: mqtt
-    name: "Wasmachine"
-    state_topic: "stat/sonoff4/POWER1"
-    command_topic: "cmnd/sonoff4/POWER1"
-    qos: 1
-    payload_on: "ON"
-    payload_off: "OFF"
     retain: true
 
 # IR send for switching TV on and off.

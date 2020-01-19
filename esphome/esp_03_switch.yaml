@@ -1,6 +1,6 @@
-# LSC Smart Connect Switch
+# Sonoff Pow
 esphome:
-  name: esp_01_switch
+  name: esp_03_switch
   platform: ESP8266
   board: esp01_1m
 
@@ -10,7 +10,7 @@ wifi:
   
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
-    ssid: "Esp switch 01"
+    ssid: "Esp switch 03"
     password: !secret ESPHome_hotspot
 
 captive_portal:
@@ -26,9 +26,9 @@ ota:
 
 binary_sensor:
   - platform: gpio
-    name: "ESP_01_button"
+    name: "ESP_03_button"
     pin:
-      number: GPIO14
+      number: GPIO0
       mode: INPUT_PULLUP
       inverted: True
     on_press:
@@ -36,15 +36,15 @@ binary_sensor:
 
 output:
   - platform: esp8266_pwm
-    id: ESP_01_status_led
+    id: ESP_03_status_led
     pin:
-      number: GPIO04
-      inverted: True
+      number: GPIO15
+      inverted: False
 
 light:
   - platform: monochromatic
-    name: "ESP_01_led"
-    output: ESP_01_status_led
+    name: "ESP_03_led"
+    output: ESP_03_status_led
     id: led
 
 switch:
@@ -52,23 +52,40 @@ switch:
     pin: GPIO12
     id: relay
   - platform: template
-    name: "ESP_01_relay"
+    name: "ESP_03_relay"
     optimistic: true
     id: relayandled
     turn_on_action:
     - switch.turn_on: relay
-    - light.turn_on: led
     turn_off_action:
     - switch.turn_off: relay
-    - light.turn_off: led
 
 sensor:
   - platform: wifi_signal
-    name: "ESP_01_wifi_signal"
+    name: "ESP_03_wifi_signal"
     update_interval: 60s
   - platform: uptime
-    name: "ESP_01_uptime"
+    name: "ESP_03_uptime"
+  - platform: hlw8012
+    sel_pin: 5
+    cf_pin: 14
+    cf1_pin: 13
+    update_interval: 2s
+    current:
+      name: SonOff POW Current
+    voltage:
+      name: SonOff POW Voltage
+    power:
+      name: SonOff POW Power
+      id: power
+      on_value_range:
+        - above: 4.0
+          then:
+            - light.turn_on: led
+        - below: 3.0
+          then:
+            - light.turn_off: led
 
 text_sensor:
   - platform: version
-    name: "ESP_01_ESPHome_version"
+    name: "ESP_03_ESPHome_version"

@@ -1,17 +1,29 @@
 - id: '1574340371169'
   name: TV kijken
   entities:
-    switch.kerstboom:
+    switch.esp_05_relay:
+      friendly_name: TV
+      icon: ''
       state: 'on'
-    switch.tv:
+    switch.kerstboom:
+      assumed_state: true
+      friendly_name: Kerstboom
       state: 'on'
     switch.woonkmr_hektar3:
+      assumed_state: true
+      friendly_name: Woonkmr_hektar3
       state: 'on'
     switch.woonkmr_hektar_bank:
+      assumed_state: true
+      friendly_name: Woonkmr_hektar_bank
       state: 'off'
     switch.woonkmr_hektar_mid:
+      assumed_state: true
+      friendly_name: Woonkmr_hektar_mid
       state: 'on'
     switch.woonkmr_knubbig:
+      assumed_state: true
+      friendly_name: Woonkmr_knubbig
       state: 'on'
 - id: '1574340373425'
   name: Lezen
@@ -29,21 +41,39 @@
 - id: '1575109499554'
   name: Naar bed
   entities:
+    switch.esp_05_relay:
+      friendly_name: TV
+      icon: ''
+      state: 'off'
     switch.kerstboom:
+      assumed_state: true
+      friendly_name: Kerstboom
       state: 'off'
     switch.schuur_buiten:
+      assumed_state: true
+      friendly_name: Schuur_buiten
       state: 'off'
     switch.tuin_lampjes:
-      state: 'off'
-    switch.tv:
+      assumed_state: true
+      friendly_name: Tuin_lampjes
       state: 'off'
     switch.woonkmr_hektar3:
+      assumed_state: true
+      friendly_name: Woonkmr_hektar3
       state: 'off'
     switch.woonkmr_hektar_bank:
+      assumed_state: true
+      friendly_name: Woonkmr_hektar_bank
       state: 'off'
     switch.woonkmr_hektar_mid:
+      assumed_state: true
+      friendly_name: Woonkmr_hektar_mid
       state: 'off'
     switch.woonkmr_knubbig:
+      assumed_state: true
+      friendly_name: Woonkmr_knubbig
       state: 'off'
     switch.zolder:
+      assumed_state: true
+      friendly_name: Zolder
       state: 'off'
