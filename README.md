@@ -25,12 +25,12 @@ A overview of the Home Assistant configuration, automations and devices will fol
 
 ### Devices
 - ?x Custom ESP8266 devices (mainly sensors) running ESPHome, Tasmota or custom firmware.
-- 3x Sonoff Basic running Tasmota.
-- 2x Sonoff Pow 2 running Tasmota. 
+- 3x Sonoff Basic running ESPHome.
+- 2x Sonoff Pow 2 running ESPHome. 
 - 8x Action 433Mhz power plug.
 - 2x LSC Smart Connect RGB ligts (running Tasmota)
 - 5x LSC Smart Connect cwww lights (running ESPHome)
-- ESP8266 as a MQTT to 433Mhz gateway.
+- ESP8266 as a MQTT to 433Mhz gateway running OpenMQTT Gateway.
 - Nest thermostat.
 - Apple TV HD (4th gen).
 - Google Home Mini.
@@ -48,7 +48,7 @@ A overview of the Home Assistant configuration, automations and devices will fol
 - SSH & Web Terminal
 
 ### Presence detection
-Presence detection is done via the IOS app and for Android via the Unifi integration.
+Presence detection is done via the IOS app and Android app.
 
 ## Contributing
 
@@ -64,7 +64,7 @@ The original creator of this repository is [Fabian Tubbing][pinquin87].
 
 MIT License
 
-Copyright (c) 2018-2019 Fabian Tubbing
+Copyright (c) 2018-2020 Fabian Tubbing
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -90,7 +90,7 @@ SOFTWARE.
 [pinquin87]: https://github.com/pinquin87
 [home-assistant]: https://home-assistant.io
 [license-shield]: https://img.shields.io/github/license/pinquin87/Home-AssistantConfig.svg
-[maintenance-shield]: https://img.shields.io/maintenance/yes/2019.svg
+[maintenance-shield]: https://img.shields.io/maintenance/yes/2020.svg
 [last-commit-shield]: https://img.shields.io/github/last-commit/pinquin87/Home-AssistantConfig.svg
 [stars-shield]: https://img.shields.io/github/stars/pinquin87/Home-AssistantConfig.svg?style=social&label=Stars
 [forks-shield]: https://img.shields.io/github/forks/pinquin87/Home-AssistantConfig.svg?style=social&label=Forks
