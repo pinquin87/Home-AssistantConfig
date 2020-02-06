@@ -133,7 +133,6 @@ weather:
 # Google Assistant for google home mini
 google_assistant:
   project_id: !secret google_project_id
-  api_key: !secret google_api_key
   exposed_domains: 
     - light
     - switch
