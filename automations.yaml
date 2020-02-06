@@ -13,7 +13,11 @@
 - id: 90dadca3afd449f1b86bc92904ffa006
   alias: VerwarmingAan
   trigger:
-  - entity_id: group.people
+  - entity_id: person.fabian
+    from: not_home
+    platform: state
+    to: home
+  - entity_id: person.myrthe
     from: not_home
     platform: state
     to: home
@@ -34,21 +38,32 @@
       entity_id: climate.downstairs
       temperature: 19
     service: climate.set_temperature
-- alias: VerwarmingUit
+- id: 45cb90b5728f4866b783af601e9f497a
+  alias: VerwarmingUit
   trigger:
-    platform: state
-    entity_id: group.people
+  - entity_id: person.fabian
     from: home
+    platform: state
     to: not_home
+  - entity_id: person.myrthe
+    from: home
+    platform: state
+    to: not_home
+  condition:
+  - condition: state
+    entity_id: person.fabian
+    state: not_home
+  - condition: state
+    entity_id: person.myrthe
+    state: not_home
   action:
-  - service: climate.set_preset_mode
-    data:
-      entity_id: climate.downstairs
+  - data:
       preset_mode: away
-  - service: homeassistant.turn_off
-    data:
-      entity_id: group.woonkamer_groep
-  id: 45cb90b5728f4866b783af601e9f497a
+    entity_id: climate.downstairs
+    service: climate.set_preset_mode
+  - data: {}
+    entity_id: scene.naar_bed
+    service: scene.turn_on
 - id: ee4548b0219c4215b3ce51e7e0442aed
   alias: woonkmrLampenAan
   trigger:
@@ -57,11 +72,16 @@
     platform: sun
   condition:
   - condition: state
-    entity_id: group.people
+    entity_id: person.fabian
     state: home
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: person.myrthe
+      state: home
   action:
-  - data:
-      entity_id: scene.lezen
+  - data: {}
+    entity_id: scene.lezen
     service: scene.turn_on
 - id: '1547220645338'
   alias: iPad opladen
@@ -127,7 +147,11 @@
 - id: '1570564990849'
   alias: Lampen aan thuis komen als donker
   trigger:
-  - entity_id: group.people
+  - entity_id: person.fabian
+    from: not_home
+    platform: state
+    to: home
+  - entity_id: person.myrthe
     from: not_home
     platform: state
     to: home
@@ -136,9 +160,9 @@
     condition: numeric_state
     entity_id: sensor.living_room_brightness
   action:
-  - data:
-      entity_id: group.woonkamer_groep
-    service: homeassistant.turn_on
+  - data: {}
+    entity_id: scene.lezen
+    service: scene.turn_on
 - id: '1570565699168'
   alias: Hoog stroomverbruik en niemand thuis
   trigger:
@@ -148,7 +172,10 @@
     platform: numeric_state
   condition:
   - condition: state
-    entity_id: group.people
+    entity_id: person.fabian
+    state: not_home
+  - condition: state
+    entity_id: person.myrthe
     state: not_home
   action:
   - data:
@@ -158,11 +185,11 @@
   alias: Tuin lampen aan thuiskomen
   description: ''
   trigger:
-  - entity_id: device_tracker.fabian_iphone_2
+  - entity_id: person.fabian
     from: not_home
     platform: state
     to: home
-  - entity_id: device_tracker.pixel_3a
+  - entity_id: person.myrthe
     from: not_home
     platform: state
     to: home
@@ -170,8 +197,8 @@
   - after: sunset
     condition: sun
   action:
-  - data:
-      entity_id: switch.schuur_buiten
+  - data: {}
+    entity_id: switch.schuur_buiten
     service: homeassistant.turn_on
 - id: '1572021985170'
   alias: Tuin lamp uit na 10 min
