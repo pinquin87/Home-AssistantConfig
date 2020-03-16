@@ -7,6 +7,13 @@ wifi:
   ssid: !secret ESPHome_wifi_ssid
   password: !secret ESPHome_wifi_key
 
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Esp Test 01 Fallback Hotspot"
+    password: "MAoAxCRZbHok"
+
+captive_portal:
+
 # Enable logging
 logger:
 
@@ -22,6 +29,14 @@ web_server:
   
 # Test sensor
 remote_transmitter:
-  pin: GPIO12
-  # RF uses a 100% carrier signal
-  carrier_duty_percent: 100%
+  pin: GPIO4
+  carrier_duty_percent: 50%
+
+
+remote_receiver:
+  pin:
+    number: GPIO14
+    inverted: True
+    mode: INPUT_PULLUP
+  dump: all
+  

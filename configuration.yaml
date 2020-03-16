@@ -25,14 +25,6 @@ system_health:
 # Enable map
 map:
 
-# Grafana iframe
-# Only works on internal network, port not forwarded.
-panel_iframe:
-  grafana:
-    title: Grafana
-    icon: mdi:chart-timeline
-    url: https://fabiantubbing.duckdns.org:3000
-
 # Enables configuration UI
 config:
 
@@ -43,8 +35,8 @@ http:
 #  api_password: !secret http_password
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
   base_url: fabiantubbing.duckdns.org
-  ssl_certificate: /ssl/fullchain.pem
-  ssl_key: /ssl/privkey.pem
+#  ssl_certificate: /ssl/fullchain.pem
+#  ssl_key: /ssl/privkey.pem
 
 # Checks for available updates
 # Note: This component will send some information about your system to
@@ -142,15 +134,17 @@ google_assistant:
 
 # Google calendar for work schedule
 google:
-  client_id: calendar_client_id
-  client_secret: calendar_client_secret
+  client_id: !secret  calendar_client_id
+  client_secret: !secret  calendar_client_secret
   track_new_calendar: false
 
 # Octoprint config
 octoprint:
   host: 192.168.2.120
-  api_key: octoprint_api_key
+  api_key: !secret octoprint_api_key
   name: 3d-Printer
+  port: 80
+  ssl: false
   bed: true
   number_of_tools: 1
   sensors:
@@ -200,5 +194,6 @@ sensor: !include sensors.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 switch: !include switches.yaml
+group: !include groups.yaml
 light: !include lights.yaml
 scene: !include scenes.yaml

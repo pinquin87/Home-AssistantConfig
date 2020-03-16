@@ -13,11 +13,7 @@
 - id: 90dadca3afd449f1b86bc92904ffa006
   alias: VerwarmingAan
   trigger:
-  - entity_id: person.fabian
-    from: not_home
-    platform: state
-    to: home
-  - entity_id: person.myrthe
+  - entity_id: group.people
     from: not_home
     platform: state
     to: home
@@ -41,21 +37,11 @@
 - id: 45cb90b5728f4866b783af601e9f497a
   alias: VerwarmingUit
   trigger:
-  - entity_id: person.fabian
+  - entity_id: group.people
     from: home
     platform: state
     to: not_home
-  - entity_id: person.myrthe
-    from: home
-    platform: state
-    to: not_home
-  condition:
-  - condition: state
-    entity_id: person.fabian
-    state: not_home
-  - condition: state
-    entity_id: person.myrthe
-    state: not_home
+  condition: []
   action:
   - data:
       preset_mode: away
@@ -72,13 +58,8 @@
     platform: sun
   condition:
   - condition: state
-    entity_id: person.fabian
+    entity_id: group.people
     state: home
-  - condition: or
-    conditions:
-    - condition: state
-      entity_id: person.myrthe
-      state: home
   action:
   - data: {}
     entity_id: scene.lezen
@@ -172,10 +153,7 @@
     platform: numeric_state
   condition:
   - condition: state
-    entity_id: person.fabian
-    state: not_home
-  - condition: state
-    entity_id: person.myrthe
+    entity_id: group.people
     state: not_home
   action:
   - data:
@@ -204,12 +182,13 @@
   alias: Tuin lamp uit na 10 min
   description: ''
   trigger:
-  - entity_id: device_tracker.fabian_iphone_2
+  - entity_id: person.fabian
     for: 00:10:00
     from: not_home
     platform: state
     to: home
-  - entity_id: device_tracker.pixel_3a
+  - entity_id: person.myrthe
+    for: 00:10:00
     from: not_home
     platform: state
     to: home

@@ -1,0 +1,6 @@
+# Group
+people:
+  name: People
+  entities:
+    - person.fabian
+    - person.myrthe
