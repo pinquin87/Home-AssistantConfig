@@ -14,7 +14,6 @@ homeassistant:
   customize: !include customize.yaml
   
 # Show links to resources in log and frontend
-# introduction:
 
 # Enables the frontend
 frontend:
@@ -31,12 +30,8 @@ config:
 # http config
 # TODO: remove api_password and check if everything keeps working.
 http:
-  # Uncomment this to add a password (recommended!)
-#  api_password: !secret http_password
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
   base_url: fabiantubbing.duckdns.org
-#  ssl_certificate: /ssl/fullchain.pem
-#  ssl_key: /ssl/privkey.pem
 
 # Checks for available updates
 # Note: This component will send some information about your system to
@@ -56,11 +51,6 @@ mobile_app:
 
 # Enable Homekit
 homekit:
-
-# MQTT
-# Deprecated, moved to Mosquitto
-#mqtt:
-#  password: !secret mqtt_password
 
 # Nest component
 nest:
@@ -162,28 +152,17 @@ camera:
     still_image_url: http://192.168.2.120/webcam/?action=snapshot
     mjpeg_url: http://192.168.2.120/webcam/?action=stream
 
-# Motion detection sensor (PIR)
-# TODO: Move to different file for binary sensors.
-binary_sensor:
-  - platform: mqtt
-    name: "Woonkamer bewegings sensor"
-    state_topic: "stat/multisensorwk/POWER"
-    payload_on: "ON"
-    payload_off: "OFF"
-    qos: 1
-
-# HTML 5 Notifications used for Android notifications
-notify:
-  - platform: html5
-    name: html5push
-    vapid_pub_key: !secret vapid_pub_key
-    vapid_prv_key: !secret vapid_prv_key
-    vapid_email: !secret vapid_email
-
-# Time slider for automation electrische deken uit
+# Time sliders for automation electrische deken uit
 input_number:
   slider:
     name: Electrischedeken Timer
+    initial: 30
+    min: 10
+    max: 59
+    step: 10
+
+  slider2:
+    name: Electrischedeken Timer2
     initial: 30
     min: 10
     max: 59
