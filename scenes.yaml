@@ -29,14 +29,20 @@
   name: Lezen
   entities:
     switch.kerstboom:
+      assumed_state: true
+      friendly_name: Kerstboom
       state: 'on'
     switch.woonkmr_hektar3:
-      state: 'on'
-    switch.woonkmr_hektar_bank:
+      assumed_state: true
+      friendly_name: Woonkmr_hektar3
       state: 'on'
     switch.woonkmr_hektar_mid:
+      assumed_state: true
+      friendly_name: Woonkmr_hektar_mid
       state: 'on'
     switch.woonkmr_knubbig:
+      assumed_state: true
+      friendly_name: Woonkmr_knubbig
       state: 'on'
 - id: '1575109499554'
   name: Naar bed

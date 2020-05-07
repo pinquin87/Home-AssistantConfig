@@ -97,6 +97,7 @@ influxdb:
       - sensor.time
       - sensor.date
       - sensor.date_time
+      - light.esp_04_led
       
 # Track the sun
 sun:

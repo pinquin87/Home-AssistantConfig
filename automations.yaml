@@ -54,7 +54,7 @@
   alias: woonkmrLampenAan
   trigger:
   - event: sunset
-    offset: 00:00:00
+    offset: -00:30:00
     platform: sun
   condition:
   - condition: state
@@ -95,8 +95,7 @@
     service: homeassistant.turn_off
   - data:
       message: Wasmachine is klaar!!
-      target: myrthe_pixel
-    service: notify.html5push
+    service: notify.mobile_app_pixel_3a
 - id: '1549731767373'
   alias: 3d Printer klaar
   trigger:
@@ -222,11 +221,11 @@
       entity_id: switch.boom_buiten
     service: switch.turn_off
 - id: '1586110473108'
-  alias: Electrische denk uit Fabian
+  alias: Electrische deken uit Fabian
   description: ''
   trigger:
   - entity_id: switch.esp_06_relay
-    for: 00:{{ states.input_number.slider1.state | int }}:00
+    for: 00:{{ states.input_number.slider2.state | int }}:00
     from: 'off'
     platform: state
     to: 'on'
