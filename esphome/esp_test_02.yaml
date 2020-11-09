@@ -4,13 +4,13 @@ esphome:
   board: d1_mini
 
 wifi:
-  ssid: "Tubco"
-  password: "test"
+  ssid: !secret ESPHome_wifi_ssid
+  password: !secret ESPHome_wifi_key
 
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
     ssid: "Esp Test 02 Fallback Hotspot"
-    password: "MAoAxCRZbHok"
+    password: !secret ESPHome_hotspot
 
 captive_portal:
 
@@ -19,7 +19,7 @@ logger:
 
 # Enable Home Assistant API
 api:
-  password: "Jaap1234"
+  password: !secret http_password
 
 ota:
-  password: "Jaap1234"
+  password: !secret http_password

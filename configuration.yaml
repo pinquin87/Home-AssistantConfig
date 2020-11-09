@@ -28,7 +28,6 @@ map:
 config:
 
 # http config
-# TODO: remove api_password and check if everything keeps working.
 http:
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
   base_url: fabiantubbing.duckdns.org
@@ -98,6 +97,9 @@ influxdb:
       - sensor.date
       - sensor.date_time
       - light.esp_04_led
+      - sensor.3d_printer_time_elapsed
+      - sensor.3d_printer_time_remaining
+      - sensor.3d_printer_job_percentage
       
 # Track the sun
 sun:
@@ -110,7 +112,7 @@ tts:
 # Buienradar weather
 weather:
   - platform: buienradar
-    name: Enschede
+    name: Deventer
     forecast: True
 
 # Google Assistant for google home mini
@@ -131,7 +133,7 @@ google:
 
 # Octoprint config
 octoprint:
-  host: 192.168.2.120
+  host: 192.168.2.31
   api_key: !secret octoprint_api_key
   name: 3d-Printer
   port: 80
@@ -152,6 +154,11 @@ camera:
     name: Octoprint
     still_image_url: http://192.168.2.120/webcam/?action=snapshot
     mjpeg_url: http://192.168.2.120/webcam/?action=stream
+
+# LG WebOS Tv
+webostv:
+  host: 192.168.2.167
+  name: TV woonkamer
 
 # Time sliders for automation electrische deken uit
 input_number:

@@ -43,3 +43,20 @@
       - type: memory_free
       - type: processor_use
       - type: last_boot
+
+  - platform: buienradar
+    name: 'Twente'
+    monitored_conditions:
+    - stationname
+
+# Solar SMA SUNNY BOY 1.5
+  - platform: sma
+    host: 192.168.2.134
+    password: !secret SMA_password
+    sensors:
+      - pv_power
+      - total_yield
+      - pv_gen_meter
+      - daily_yield
+      - frequency
+      - status
