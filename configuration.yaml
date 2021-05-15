@@ -1,19 +1,20 @@
 homeassistant:
   # Name of the location where Home Assistant is running
-  name: Home
+  #name: Home
   # Location required to calculate the time the sun rises and sets
-  latitude: !secret latitude
-  longitude: !secret longitude
+  #latitude: !secret latitude
+  #ongitude: !secret longitude
   # Impacts weather/sunrise data (altitude above sea level in meters)
-  elevation: 48
+  #elevation: 48
   # metric for Metric, imperial for Imperial
-  unit_system: metric
+  #unit_system: metric
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-  time_zone: Europe/Amsterdam
+  #time_zone: Europe/Amsterdam
   # Customization file
   customize: !include customize.yaml
   
-# Show links to resources in log and frontend
+# Default config
+default_config:
 
 # Enables the frontend
 frontend:
@@ -28,18 +29,18 @@ map:
 config:
 
 # http config
-http:
+#http:
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-  base_url: fabiantubbing.duckdns.org
+  #base_url: fabiantubbing.duckdns.org
 
 # Checks for available updates
 # Note: This component will send some information about your system to
 # the developers to assist with development of Home Assistant.
 # For more information, please see:
 # https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
-updater:
+#updater:
   # Optional, allows Home Assistant developers to focus on popular components.
-  include_used_components: true
+  #include_used_components: true
 
 # Discover some devices automatically
 discovery:
@@ -159,6 +160,11 @@ camera:
 webostv:
   host: 192.168.2.167
   name: TV woonkamer
+#  turn_on_action:
+#  service: wake_on_lan.send_magic_packet
+#  data:
+#    mac: AA-BB-CC-DD-EE-FF
+#    broadcast_address: 11.22.33.44
 
 # Time sliders for automation electrische deken uit
 input_number:

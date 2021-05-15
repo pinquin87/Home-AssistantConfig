@@ -31,7 +31,7 @@ output:
 light:
   - platform: cwww
     name: "lsc_e27_cwww_03"
-    restore_mode: ALWAYS_ON
+    restore_mode: RESTORE_DEFAULT_ON
     cold_white: esp_gpio14
     warm_white: esp_gpio12
     cold_white_color_temperature: 2700 K

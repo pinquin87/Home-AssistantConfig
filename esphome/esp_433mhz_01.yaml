@@ -1,0 +1,68 @@
+esphome:
+  name: esp_433mhz_01
+  platform: ESP8266
+  board: esp01_1m
+
+wifi:
+  ssid: !secret ESPHome_wifi_ssid
+  password: !secret ESPHome_wifi_key
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Esp 433Mhz 01 Fallback Hotspot"
+    password: !secret ESPHome_hotspot
+logger:
+# Enable Home Assistant API
+api:
+  password: !secret http_password
+
+ota:
+  password: !secret http_password
+
+remote_transmitter:
+  pin: 12
+  carrier_duty_percent: 100%
+
+switch:
+  - platform: template
+    name: Kaku B On Button
+    turn_on_action:
+      - remote_transmitter.transmit_rc_switch_raw:
+          code: '00010011111111110000000000110001'
+          protocol:
+            pulse_length: 270
+            sync: [0, 0]
+            zero: [3, 10]
+            one: [9, 3]
+          repeat:
+            times: 4
+            wait_time: 4100us
+  - platform: template
+    name: Kaku B Off Button
+    turn_on_action:
+      - remote_transmitter.transmit_rc_switch_raw:
+          code: '00010011111111110000000000100001'
+          protocol:
+            pulse_length: 270
+            sync: [0, 0]
+            zero: [3, 10]
+            one: [9, 3]
+          repeat:
+            times: 4
+            wait_time: 4100us
+  - platform: template
+    name: Protocol8
+    turn_on_action:
+      - remote_transmitter.transmit_rc_switch_raw:
+          code: '00010011111111110000000000110001'
+          protocol: 8
+
+            
+remote_receiver:
+  pin: 14
+  dump:
+    - rc_switch
+  tolerance: 50%
+  filter: 272us
+  idle: 4ms
+  buffer_size: 2kb

@@ -43,3 +43,12 @@
     payload_off: "OFF"
     payload_available: "Online"
     payload_not_available: "Offline"
+
+
+# Light group Tafel Woonkamer
+  - platform: group
+    name: Lampen Tafel Woonkamer
+    entities:
+      - light.lsc_e27_cwww_01
+      - light.lsc_e27_cwww_02
+      - light.lsc_e27_cwww_03

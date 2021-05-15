@@ -32,8 +32,9 @@
     service: climate.set_hvac_mode
   - data:
       entity_id: climate.downstairs
-      temperature: 19
+      temperature: 20
     service: climate.set_temperature
+  mode: single
 - id: 45cb90b5728f4866b783af601e9f497a
   alias: VerwarmingUit
   trigger:
@@ -112,10 +113,12 @@
   alias: VerwarmingAanKalender
   trigger:
   - platform: template
-    value_template: '{% set work_start = ( [states.calendar.werk_rooster_fabian.attributes.start_time]
-      | min ) %} {% set work_time = strptime(work_start,"%Y-%m-%d %H:%M:%S") %} {%
-      set heat_time = work_time.replace(hour=work_time.hour-2) %} {{ strptime(states.sensor.date_time.state,
-      "%Y-%m-%d, %H:%M") == heat_time }}'
+    value_template: "{% if states.calendar.fabian_tubbing_nl.attributes.description\
+      \ | regex_match('SHFT', ignorecase=False) %}\n    {% set work_start = ( [states.calendar.fabian_tubbing_nl.attributes.start_time]\
+      \ | min ) %}\n{% endif %}\n{% set work_time = strptime(work_start,\"%Y-%m-%d\
+      \ %H:%M:%S\") %} \n{% set heat_time = work_time.replace(hour=work_time.hour-2)\
+      \ %} \n{{ strptime(states.sensor.date_time.state, \"%Y-%m-%d, %H:%M\") == heat_time\
+      \ }}"
   condition:
   - condition: state
     entity_id: group.people
@@ -124,6 +127,7 @@
   - data:
       entity_id: automation.verwarmingaan
     service: automation.trigger
+  mode: single
 - id: '1570564990849'
   alias: Lampen aan thuis komen als donker
   trigger:
@@ -234,3 +238,29 @@
   - data: {}
     entity_id: switch.esp_06_relay
     service: switch.turn_off
+  mode: single
+- id: '1608041878074'
+  alias: HA config backup
+  description: ''
+  trigger:
+  - platform: time
+    at: '3:00'
+  condition: []
+  action:
+  - service: hassio.snapshot_full
+    data: {}
+  mode: single
+- id: '1610703834825'
+  alias: New Automation
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_boolean.verwarming_hoog
+    to: 'true'
+    from: 'false'
+  condition: []
+  action:
+  - service: automation.trigger
+    data: {}
+    entity_id: automation.verwarmingaan
+  mode: single
