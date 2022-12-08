@@ -29,10 +29,14 @@ map:
 config:
 
 # http config
-#http:
+http:
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
   #base_url: fabiantubbing.duckdns.org
-
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 172.30.33.0/24
+  ip_ban_enabled: true
+  login_attempts_threshold: 5
 # Checks for available updates
 # Note: This component will send some information about your system to
 # the developers to assist with development of Home Assistant.
@@ -73,7 +77,7 @@ logbook:
 
 # Recorder settings
 recorder:
-  purge_keep_days: 8
+  purge_keep_days: 16
   exclude:
     entities:
       - sensor.last_boot
@@ -85,23 +89,23 @@ recorder:
       - sensor.3d_printer_job_percentage
 
 # Influxdb for storing state data
-influxdb:
-  port: 8086
-  database: homeassistant
-  username: homeassistant
-  password: !secret influxdb_password
-  max_retries: 3
-  default_measurement: state
-  exclude:
-    entities:
-      - sensor.time
-      - sensor.date
-      - sensor.date_time
-      - light.esp_04_led
-      - sensor.3d_printer_time_elapsed
-      - sensor.3d_printer_time_remaining
-      - sensor.3d_printer_job_percentage
-      
+#influxdb:
+#  port: 8086
+# database: homeassistant
+# username: homeassistant
+#  password: !secret influxdb_password
+#  max_retries: 3
+#  default_measurement: state
+#  exclude:
+#    entities:
+#     - sensor.time
+#      - sensor.date
+#     - sensor.date_time
+#      - light.esp_04_led
+#      - sensor.3d_printer_time_elapsed
+#      - sensor.3d_printer_time_remaining
+#      - sensor.3d_printer_job_percentage
+#      
 # Track the sun
 sun:
 
@@ -111,10 +115,10 @@ tts:
     service_name: google_say
 
 # Buienradar weather
-weather:
-  - platform: buienradar
-    name: Deventer
-    forecast: True
+#weather:
+#  - platform: buienradar
+#    name: Deventer
+#    forecast: True
 
 # Google Assistant for google home mini
 google_assistant:
@@ -127,10 +131,10 @@ google_assistant:
     - climate
 
 # Google calendar for work schedule
-google:
-  client_id: !secret  calendar_client_id
-  client_secret: !secret  calendar_client_secret
-  track_new_calendar: false
+#google:
+#  client_id: !secret  calendar_client_id
+#  client_secret: !secret  calendar_client_secret
+#  track_new_calendar: false
 
 # Octoprint config
 octoprint:
@@ -171,16 +175,55 @@ input_number:
   slider:
     name: Electrischedeken Timer
     initial: 30
-    min: 10
+    min: 5
     max: 59
-    step: 10
+    step: 5
 
   slider2:
     name: Electrischedeken Timer2
     initial: 30
-    min: 10
+    min: 5
     max: 59
-    step: 10
+    step: 5
+
+input_text:
+  teams_status:
+    name: Microsoft Teams status
+    icon: mdi:microsoft-teams
+  teams_activity:
+    name: Microsoft Teams activity
+    icon: mdi:phone-off
+
+
+# Temp sensor attic
+mqtt:
+  sensor:
+    - name: "Zolder Temp"
+      state_topic: "home/DHTtoMQTT/dht1/temp"
+      unit_of_measurement: "°C"
+      value_template: '{{ value | round(1) -3.5  }}'
+
+# Humidity sensor attic
+    - name: "Zolder Luchtvochtigheid"
+      state_topic: "home/DHTtoMQTT/dht1/hum"
+      unit_of_measurement: "%"
+      value_template: '{{ value | round(0) +10  }}'
+      icon: mdi:water-percent
+
+# Power sensor washing machine (Sonof pow)
+    - name: "Wasmachine Energie verbruik"
+      state_topic: "tele/sonoff4/SENSOR"
+      value_template: '{{ value_json["ENERGY"]["Power"] }}'
+      qos: 1
+      unit_of_measurement: "W"
+
+# Light sensor livingroom
+    - name: "Woonkamer licht sensor"
+      state_topic: "tele/multisensorwk/SENSOR"
+      value_template: '{{ value_json.ANALOG.A0}}'
+      qos: 1
+
+
 
 # Includes
 sensor: !include sensors.yaml

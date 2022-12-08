@@ -1,0 +1,76 @@
+# Homelux switch
+esphome:
+  name: esp-07-switch
+
+esp8266:
+  board: esp01_1m
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: !secret http_password
+
+ota:
+  password: !secret http_password
+
+wifi:
+  ssid: !secret ESPHome_wifi_ssid
+  password: !secret ESPHome_wifi_key
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Esp-07-Switch Fallback Hotspot"
+    password: !secret ESPHome_hotspot
+
+captive_portal:
+
+binary_sensor:
+  - platform: gpio
+    name: "ESP-07-button"
+    pin:
+      number: GPIO13
+      mode: INPUT_PULLUP
+      inverted: True
+    on_press:
+      - switch.toggle: relayandled
+
+output:
+  - platform: esp8266_pwm
+    id: ESP_07_status_led
+    pin:
+      number: GPIO04
+      inverted: True
+
+light:
+  - platform: monochromatic
+    name: "ESP-07-led"
+    output: ESP_07_status_led
+    id: led
+
+switch:
+  - platform: gpio
+    pin: GPIO12
+    id: relay
+  - platform: template
+    name: "ESP-07-relay"
+    optimistic: true
+    id: relayandled
+    turn_on_action:
+    - switch.turn_on: relay
+    - light.turn_on: led
+    turn_off_action:
+    - switch.turn_off: relay
+    - light.turn_off: led
+
+sensor:
+  - platform: wifi_signal
+    name: "ESP-07-wifi-signal"
+    update_interval: 60s
+  - platform: uptime
+    name: "ESP-07-uptime"
+
+text_sensor:
+  - platform: version
+    name: "ESP-07-ESPHome_version"

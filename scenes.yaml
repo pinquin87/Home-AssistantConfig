@@ -14,87 +14,243 @@
       assumed_state: true
       state: 'off'
     light.lampen_tafel_woonkamer:
-      min_mireds: 370.370361328125
-      max_mireds: 555.5555419921875
+      min_mireds: 370.3704
+      max_mireds: 555.5555
       supported_color_modes:
       - color_temp
       color_mode: color_temp
-      brightness: 76
+      brightness: 102
       color_temp: 1
+      hs_color:
+      - 220.341
+      - 40.52
+      rgb_color:
+      - 151
+      - 185
+      - 255
+      xy_color:
+      - 0.23
+      - 0.239
       entity_id:
       - light.lsc_e27_cwww_01
       - light.lsc_e27_cwww_02
       - light.lsc_e27_cwww_03
       friendly_name: Lampen Tafel Woonkamer
       icon: mdi:lightbulb-group
-      supported_features: 43
+      supported_features: 40
       state: 'on'
     light.lsc_e14_cwww_01:
-      min_mireds: 370.370361328125
-      max_mireds: 555.5555419921875
+      min_mireds: 370.3704
+      max_mireds: 555.5555
       supported_color_modes:
       - color_temp
       color_mode: color_temp
       brightness: 138
       color_temp: 1
+      hs_color:
+      - 220.341
+      - 40.52
+      rgb_color:
+      - 151
+      - 185
+      - 255
+      xy_color:
+      - 0.23
+      - 0.239
       friendly_name: lsc_e14_cwww_01
-      supported_features: 43
+      supported_features: 40
+      state: 'on'
+    light.ledstrip01:
+      effect_list:
+      - None
+      - Rainbow
+      - Rainbow Effect With Custom Values
+      - Twinkle
+      - Twinkle Effect With Custom Values
+      - Fireworks
+      - Fireworks Effect With Custom Values
+      - Addressable Flicker
+      - Flicker Effect With Custom Values
+      - Color Wipe
+      - Color Wipe Effect With Custom Values
+      supported_color_modes:
+      - rgb
+      color_mode: rgb
+      brightness: 110
+      hs_color:
+      - 44.706
+      - 100
+      rgb_color:
+      - 255
+      - 190
+      - 0
+      xy_color:
+      - 0.528
+      - 0.446
+      effect: None
+      friendly_name: Ledstrip01
+      supported_features: 44
       state: 'on'
 - id: '1574340373425'
   name: Lezen
   entities:
-    switch.kerstboom:
-      assumed_state: true
-      friendly_name: Kerstboom
-      state: 'on'
     switch.woonkmr_hektar3:
-      assumed_state: true
       friendly_name: Woonkmr_hektar3
-      state: 'on'
-    switch.woonkmr_hektar_mid:
       assumed_state: true
-      friendly_name: Woonkmr_hektar_mid
       state: 'on'
     switch.woonkmr_knubbig:
-      assumed_state: true
       friendly_name: Woonkmr_knubbig
+      assumed_state: true
+      state: 'on'
+    light.lampen_tafel_woonkamer:
+      min_mireds: 370.3704
+      max_mireds: 555.5555
+      supported_color_modes:
+      - color_temp
+      color_mode: color_temp
+      brightness: 102
+      color_temp: 1
+      hs_color:
+      - 220.341
+      - 40.52
+      rgb_color:
+      - 151
+      - 185
+      - 255
+      xy_color:
+      - 0.23
+      - 0.239
+      entity_id:
+      - light.lsc_e27_cwww_01
+      - light.lsc_e27_cwww_02
+      - light.lsc_e27_cwww_03
+      friendly_name: Lampen Tafel Woonkamer
+      icon: mdi:lightbulb-group
+      supported_features: 40
+      state: 'on'
+    light.lsc_e14_cwww_01:
+      min_mireds: 370.3704
+      max_mireds: 555.5555
+      supported_color_modes:
+      - color_temp
+      color_mode: color_temp
+      brightness: 138
+      color_temp: 1
+      hs_color:
+      - 220.341
+      - 40.52
+      rgb_color:
+      - 151
+      - 185
+      - 255
+      xy_color:
+      - 0.23
+      - 0.239
+      friendly_name: lsc_e14_cwww_01
+      supported_features: 40
+      state: 'on'
+    switch.woonkmr_hektar_bank:
+      friendly_name: Woonkmr_hektar_bank
+      assumed_state: true
+      state: 'on'
+    light.ledstrip01:
+      effect_list:
+      - None
+      - Rainbow
+      - Rainbow Effect With Custom Values
+      - Twinkle
+      - Twinkle Effect With Custom Values
+      - Fireworks
+      - Fireworks Effect With Custom Values
+      - Addressable Flicker
+      - Flicker Effect With Custom Values
+      - Color Wipe
+      - Color Wipe Effect With Custom Values
+      supported_color_modes:
+      - rgb
+      color_mode: rgb
+      brightness: 110
+      hs_color:
+      - 44.706
+      - 100
+      rgb_color:
+      - 255
+      - 190
+      - 0
+      xy_color:
+      - 0.528
+      - 0.446
+      effect: None
+      friendly_name: Ledstrip01
+      supported_features: 44
       state: 'on'
 - id: '1575109499554'
   name: Naar bed
   entities:
-    switch.esp_05_relay:
-      friendly_name: TV
-      icon: ''
-      state: 'off'
     switch.kerstboom:
-      assumed_state: true
       friendly_name: Kerstboom
+      assumed_state: true
       state: 'off'
     switch.schuur_buiten:
-      assumed_state: true
       friendly_name: Schuur_buiten
+      assumed_state: true
       state: 'off'
     switch.tuin_lampjes:
-      assumed_state: true
       friendly_name: Tuin_lampjes
+      assumed_state: true
       state: 'off'
     switch.woonkmr_hektar3:
-      assumed_state: true
       friendly_name: Woonkmr_hektar3
+      assumed_state: true
       state: 'off'
     switch.woonkmr_hektar_bank:
-      assumed_state: true
       friendly_name: Woonkmr_hektar_bank
+      assumed_state: true
       state: 'off'
     switch.woonkmr_hektar_mid:
-      assumed_state: true
       friendly_name: Woonkmr_hektar_mid
+      assumed_state: true
       state: 'off'
     switch.woonkmr_knubbig:
-      assumed_state: true
       friendly_name: Woonkmr_knubbig
-      state: 'off'
-    switch.zolder:
       assumed_state: true
-      friendly_name: Zolder
+      state: 'off'
+    light.lsc_e14_cwww_01:
+      min_mireds: 370.3704
+      max_mireds: 555.5555
+      supported_color_modes:
+      - color_temp
+      friendly_name: lsc_e14_cwww_01
+      supported_features: 40
+      state: 'off'
+    light.lampen_tafel_woonkamer:
+      min_mireds: 370.3704
+      max_mireds: 555.5555
+      supported_color_modes:
+      - color_temp
+      entity_id:
+      - light.lsc_e27_cwww_01
+      - light.lsc_e27_cwww_02
+      - light.lsc_e27_cwww_03
+      friendly_name: Lampen Tafel Woonkamer
+      icon: mdi:lightbulb-group
+      supported_features: 40
+      state: 'off'
+    light.ledstrip01:
+      effect_list:
+      - None
+      - Rainbow
+      - Rainbow Effect With Custom Values
+      - Twinkle
+      - Twinkle Effect With Custom Values
+      - Fireworks
+      - Fireworks Effect With Custom Values
+      - Addressable Flicker
+      - Flicker Effect With Custom Values
+      - Color Wipe
+      - Color Wipe Effect With Custom Values
+      supported_color_modes:
+      - rgb
+      friendly_name: Ledstrip01
+      supported_features: 44
       state: 'off'

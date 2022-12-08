@@ -1,0 +1,81 @@
+esphome:
+  name: esp_dsmr_01
+  platform: ESP8266
+  board: d1_mini
+  
+  includes:
+    - uart_read_line_sensor.h
+
+wifi:
+  ssid: !secret ESPHome_wifi_ssid
+  password: !secret ESPHome_wifi_key
+  power_save_mode: none
+  
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "ESP_DSMR_01"
+    password: !secret ESPHome_hotspot
+
+captive_portal:
+
+# Enable logging
+logger:
+  level: DEBUG
+  esp8266_store_log_strings_in_flash: False
+  baud_rate: 0
+
+# Enable Home Assistant API
+api:
+  password: !secret http_password
+
+ota:
+  password: !secret http_password
+  
+uart:
+  - rx_pin: D3
+    baud_rate: 115200
+    id: uart_bus  
+dsmr:
+  uart_id: uart_bus
+
+sensor:
+  - platform: dsmr
+    energy_delivered_tariff1:
+      name: Energy Consumed Tariff 1
+    energy_delivered_tariff2:
+      name: Energy Consumed Tariff 2
+    energy_returned_tariff1:
+      name: Energy Returned Tariff 1
+    energy_returned_tariff2:
+      name: Energy Returned Tariff 2
+    power_delivered:
+      name: Power Consumed
+    power_returned:
+      name: Power Returned
+    voltage_l1:
+      name: Voltage L1
+    voltage_l2:
+      name: Voltage L2
+    voltage_l3:
+      name: Voltage L3
+    power_delivered_l1:
+      name: Energy consumed L1
+    power_delivered_l2:
+      name: Energy consumed L2
+    power_delivered_l3:
+      name: Energy consumed L3
+    power_returned_l1:
+      name: Energy Produced L1
+    power_returned_l2:
+      name: Energy Produced L2
+    power_returned_l3:
+      name: Energy Produced L3
+    gas_delivered:
+      name: Gas Consumed
+
+text_sensor:
+  - platform: dsmr
+    identification:
+      name: "DSMR Identification"
+    p1_version:
+      name: "DSMR Version"

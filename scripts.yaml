@@ -4,45 +4,50 @@ lg_tv_button_enter:
   - service: webostv.button
     data:
       entity_id: media_player.lg_webos_tv_3734
-      button: ENTER
+      button: "ENTER"
   mode: single
+
 lg_tv_button_back:
   alias: LG_TV_Button_Back
   sequence:
   - service: webostv.button
     data:
       entity_id: media_player.lg_webos_tv_3734
-      Button: BACK
+      Button: "BACK"
   mode: single
+
 lg_tv_button_left:
   alias: LG_TV_Button_Left
   sequence:
   - service: webostv.button
     data:
       entity_id: media_player.lg_webos_tv_3734
-      Button: LEFT
+      Button: "LEFT"
   mode: single
+
 lg_tv_button_right:
   alias: LG_TV_Button_Right
   sequence:
   - service: webostv.button
     data:
       entity_id: media_player.lg_webos_tv_3734
-      Button: RIGHT
+      Button: "RIGHT"
   mode: single
+
 lg_tv_button_up:
   alias: LG_TV_Button_Up
   sequence:
   - service: webostv.button
     data:
       entity_id: media_player.lg_webos_tv_3734
-      Button: UP
+      Button: "UP"
   mode: single
+
 lg_tv_button_down:
   alias: LG_TV_Button_Down
   sequence:
   - service: webostv.button
     data:
       entity_id: media_player.lg_webos_tv_3734
-      Button: DOWN
+      Button: "DOWN"
   mode: single

@@ -18,8 +18,8 @@
     platform: state
     to: home
   condition:
-  - after: '7:00'
-    before: '21:59'
+  - after: 07:00:00
+    before: '21:59:00'
     condition: time
   action:
   - data:
@@ -31,9 +31,10 @@
       hvac_mode: heat
     service: climate.set_hvac_mode
   - data:
-      entity_id: climate.downstairs
-      temperature: 20
+      temperature: 19
     service: climate.set_temperature
+    target:
+      entity_id: climate.downstairs
   mode: single
 - id: 45cb90b5728f4866b783af601e9f497a
   alias: VerwarmingUit
@@ -62,20 +63,7 @@
     entity_id: group.people
     state: home
   action:
-  - data: {}
-    entity_id: scene.lezen
-    service: scene.turn_on
-- id: '1547220645338'
-  alias: iPad opladen
-  trigger:
-  - below: '15'
-    entity_id: sensor.ipad_van_fabian_battery_level
-    platform: numeric_state
-  condition: []
-  action:
-  - data:
-      message: iPad batterij onder 15%, opladen!
-    service: notify.mobile_app_fabian_iphone
+  - scene: scene.tv_kijken
 - id: '1547221368193'
   alias: Wasmachine klaar
   trigger:
@@ -113,12 +101,11 @@
   alias: VerwarmingAanKalender
   trigger:
   - platform: template
-    value_template: "{% if states.calendar.fabian_tubbing_nl.attributes.description\
-      \ | regex_match('SHFT', ignorecase=False) %}\n    {% set work_start = ( [states.calendar.fabian_tubbing_nl.attributes.start_time]\
-      \ | min ) %}\n{% endif %}\n{% set work_time = strptime(work_start,\"%Y-%m-%d\
-      \ %H:%M:%S\") %} \n{% set heat_time = work_time.replace(hour=work_time.hour-2)\
-      \ %} \n{{ strptime(states.sensor.date_time.state, \"%Y-%m-%d, %H:%M\") == heat_time\
-      \ }}"
+    value_template: "{% if states.calendar.fabian_tubbing_nl.attributes.description
+      | regex_match('SHFT', ignorecase=False) %}\n    {% set work_start = ( [states.calendar.fabian_tubbing_nl.attributes.start_time]
+      | min ) %}\n{% endif %}\n{% set work_time = strptime(work_start,\"%Y-%m-%d %H:%M:%S\")
+      %} \n{% set heat_time = work_time.replace(hour=work_time.hour-2) %} \n{{ strptime(states.sensor.date_time.state,
+      \"%Y-%m-%d, %H:%M\") == heat_time }}"
   condition:
   - condition: state
     entity_id: group.people
@@ -209,9 +196,10 @@
     platform: sun
   condition: []
   action:
-  - data:
-      entity_id: switch.boom_buiten
-    service: switch.turn_on
+  - type: turn_on
+    device_id: 77871e50f9af6784515b71c95d2c44d1
+    entity_id: switch.esp_07_relay
+    domain: switch
 - id: '1575108876947'
   alias: Boomlampje buiten uit
   description: ''
@@ -221,9 +209,10 @@
     platform: sun
   condition: []
   action:
-  - data:
-      entity_id: switch.boom_buiten
-    service: switch.turn_off
+  - type: turn_off
+    device_id: 77871e50f9af6784515b71c95d2c44d1
+    entity_id: switch.esp_07_relay
+    domain: switch
 - id: '1586110473108'
   alias: Electrische deken uit Fabian
   description: ''
@@ -244,23 +233,61 @@
   description: ''
   trigger:
   - platform: time
-    at: '3:00'
+    at: 03:00
   condition: []
   action:
   - service: hassio.snapshot_full
     data: {}
   mode: single
-- id: '1610703834825'
-  alias: New Automation
+- id: '1670494466186'
+  alias: RadiatorFanAan
   description: ''
   trigger:
   - platform: state
-    entity_id: input_boolean.verwarming_hoog
-    to: 'true'
-    from: 'false'
-  condition: []
+    entity_id:
+    - climate.downstairs
+    attribute: hvac_action
+    from: idle
+    to: heating
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  condition:
+  - condition: zone
+    entity_id: person.fabian
+    zone: zone.home
   action:
-  - service: automation.trigger
-    data: {}
-    entity_id: automation.verwarmingaan
+  - type: turn_on
+    device_id: f9efb0d76b2141d885364b134e76f92d
+    entity_id: switch.esp_05_relay
+    domain: switch
+  mode: single
+- id: '1670494812453'
+  alias: RadiatorFanUit
+  description: ''
+  trigger:
+  - platform: zone
+    entity_id: person.fabian
+    zone: zone.home
+    event: leave
+  - platform: state
+    entity_id:
+    - climate.downstairs
+    attribute: hvac_action
+    from: heating
+    to: idle
+    for:
+      hours: 0
+      minutes: 10
+      seconds: 0
+  condition:
+  - condition: state
+    entity_id: switch.esp_05_relay
+    state: 'on'
+  action:
+  - type: turn_off
+    device_id: f9efb0d76b2141d885364b134e76f92d
+    entity_id: switch.esp_05_relay
+    domain: switch
   mode: single
