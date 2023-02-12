@@ -224,12 +224,164 @@ mqtt:
       qos: 1
 
 
+# Switches
+# All switches using the MQTTtoRF2 are 433MHz kika protocol via an ESP8266 MQTT to 433MHz bridge.
+# TODO: Migrate all ESP devices to ESPHome
+# TODO: Remove config here when it works via ESPHome
+# Lights attic 
+  switch:
+    - name: "Zolder"
+      state_topic: "home/OpenMQTTGateway/RF2toMQTT"
+      command_topic: "home/OpenMQTTGateway/commands/MQTTtoRF2/ADDRESS_2694144/UNIT_1/PERIOD_272"
+      payload_on: "1"
+      payload_off: "0"
+      optimistic: true
+      retain: true
+
+# Light Livingroom
+    - name: "Woonkmr_hektar3"
+      state_topic: "home/OpenMQTTGateway/RF2toMQTT"
+      command_topic: "home/OpenMQTTGateway/commands/MQTTtoRF2/ADDRESS_5241856/UNIT_2/PERIOD_272"
+      payload_on: "1"
+      payload_off: "0"
+      optimistic: true
+      retain: true
+
+# Light Livingroom
+    - name: "Woonkmr_knubbig"
+      state_topic: "home/OpenMQTTGateway/RF2toMQTT"
+      command_topic: "home/OpenMQTTGateway/commands/MQTTtoRF2/ADDRESS_5241856/UNIT_1/PERIOD_272"
+      payload_on: "1"
+      payload_off: "0"
+      optimistic: true
+      retain: true
+
+# Light Livingroom
+    - name: "Woonkmr_hektar_bank"
+      state_topic: "home/OpenMQTTGateway/RF2toMQTT"
+      command_topic: "home/OpenMQTTGateway/commands/MQTTtoRF2/ADDRESS_5241856/UNIT_3/PERIOD_272"
+      payload_on: "1"
+      payload_off: "0"
+      optimistic: true
+      retain: true
+
+# Light Livingroom
+    - name: "Woonkmr_hektar_mid"
+      state_topic: "home/OpenMQTTGateway/RF2toMQTT"
+      command_topic: "home/OpenMQTTGateway/commands/MQTTtoRF2/ADDRESS_5241856/UNIT_4/PERIOD_272"
+      payload_on: "1"
+      payload_off: "0"
+      optimistic: true
+      retain: true
+
+# Light Livingroom
+    - name: "Grote Knubbig"
+      state_topic: "home/OpenMQTTGateway/OpenMQTTGateway/RF2toMQTT"
+      command_topic: "home/OpenMQTTGateway/commands/MQTTtoRF2/ADDRESS_21093376/UNIT_1/PERIOD_272"
+      payload_on: "1"
+      payload_off: "0"
+      optimistic: true
+      retain: true
+
+# Light shed outside
+    - name: "Schuur_buiten"
+      state_topic: "home/OpenMQTTGateway/RF2toMQTT"
+      command_topic: "home/OpenMQTTGateway/commands/MQTTtoRF2/ADDRESS_5423104/UNIT_2/PERIOD_262"
+      payload_on: "1"
+      payload_off: "0"
+      optimistic: true
+      retain: true
+
+# Lighstring backyard
+    - name: "Tuin_lampjes"
+      state_topic: "home/OpenMQTTGateway/RF2toMQTT"
+      command_topic: "home/OpenMQTTGateway/commands/MQTTtoRF2/ADDRESS_5423104/UNIT_1/PERIOD_262"
+      payload_on: "1"
+      payload_off: "0"
+      optimistic: true
+      retain: true
+
+# Lights Tree front garden
+    - name: "Boom Buiten"
+      state_topic: "home/OpenMQTTGateway/RF2toMQTT"
+      command_topic: "home/OpenMQTTGateway/commands/MQTTtoRF2/ADDRESS_2694144/UNIT_2/PERIOD_272"
+      payload_on: "1"
+      payload_off: "0"
+      optimistic: true
+      retain: true
+
+# IR send for switching TV on and off.
+# Moving to ESP home.
+# TODO: Remove config here when it works via ESPHome
+    - name: "TV OnOff"
+      command_topic: "cmnd/multisensorwk/irsend"
+      qos: 1
+      payload_on: "{\"Protocol\":\"RC6\", \"Bits\":20, \"Data\":\"0xC\"}"
+      payload_off: "{\"Protocol\":\"RC6\", \"Bits\":20, \"Data\":\"0xC\"}"
+      retain: true
+
+# IR send for switching audio amp TV on and off.
+# Moving to ESP home.
+# TODO: Remove config here when it works via ESPHome
+    - name: "Audio OnOff"
+      command_topic: "cmnd/multisensorwk/irsend"
+      qos: 1
+      payload_on: "{\"Protocol\":\"NEC\", \"Bits\":32, \"Data\":\"0x8322E11E\"}"
+      payload_off: "{\"Protocol\":\"NEC\", \"Bits\":32, \"Data\":\"0x8322E11E\"}"
+      retain: true
+
+
+# Lights
+
+# LSC E14 RGB light running Tasmota
+# Communication via MQTT
+  light:
+    - name: "LSC E14 RGB Light"
+      availability_topic: "tele/LSCE14RGB/LWT"
+      command_topic: "cmnd/LSCE14RGB/POWER"
+      state_topic: "stat/LSCE14RGB/RESULT"
+      state_value_template: "{{value_json.POWER}}"
+      brightness_command_topic: "cmnd/LSCE14RGB/Dimmer"
+      brightness_state_topic: "stat/LSCE14RGB/RESULT"
+      brightness_value_template: "{{value_json.Dimmer}}"
+      brightness_scale: 100
+      rgb_command_topic: "cmnd/LSCE14RGB/Color"
+      rgb_state_topic: "stat/LSCE14RGB/RESULT"
+      # RGB<->RGBW conversion
+      rgb_value_template: "{% set red = (value_json.Color.split(',')[0] | round(0)) %}{% set green = (value_json.Color.split(',')[1] | round(0)) %}{% set blue = (value_json.Color.split(',')[2] | round(0)) %}{% set white = (value_json.Color.split(',')[3] | round(0)) %}{{ red + white }},{{ green + white }},{{ blue + white }}"
+      rgb_command_template: "{% set white = ([red,green,blue]|min) %}{{ red - white }},{{ green - white }},{{ blue - white }},{{ white }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      payload_available: "Online"
+      payload_not_available: "Offline"
+
+# LSC E14 RGB light running Tasmota
+# Communication via MQTT
+    - name: "LSC E14 RGB Light 2"
+      availability_topic: "tele/LSCE14RGB02/LWT"
+      command_topic: "cmnd/LSCE14RGB02/POWER"
+      state_topic: "stat/LSCE14RGB02/RESULT"
+      state_value_template: "{{value_json.POWER}}"
+      brightness_command_topic: "cmnd/LSCE14RGB02/Dimmer"
+      brightness_state_topic: "stat/LSCE14RGB02/RESULT"
+      brightness_value_template: "{{value_json.Dimmer}}"
+      brightness_scale: 100
+      rgb_command_topic: "cmnd/LSCE14RGB02/Color"
+      rgb_state_topic: "stat/LSCE14RGB02/RESULT"
+      # RGB<->RGBW conversion
+      rgb_value_template: "{% set red = (value_json.Color.split(',')[0] | round(0)) %}{% set green = (value_json.Color.split(',')[1] | round(0)) %}{% set blue = (value_json.Color.split(',')[2] | round(0)) %}{% set white = (value_json.Color.split(',')[3] | round(0)) %}{{ red + white }},{{ green + white }},{{ blue + white }}"
+      rgb_command_template: "{% set white = ([red,green,blue]|min) %}{{ red - white }},{{ green - white }},{{ blue - white }},{{ white }}"
+      payload_on: "ON"
+      payload_off: "OFF"
+      payload_available: "Online"
+      payload_not_available: "Offline"
+
 
 # Includes
 sensor: !include sensors.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
-switch: !include switches.yaml
+#switch: !include switches.yaml
 group: !include groups.yaml
 light: !include lights.yaml
 scene: !include scenes.yaml

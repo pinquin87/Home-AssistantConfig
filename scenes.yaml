@@ -187,53 +187,54 @@
 - id: '1575109499554'
   name: Naar bed
   entities:
-    switch.kerstboom:
-      friendly_name: Kerstboom
-      assumed_state: true
-      state: 'off'
     switch.schuur_buiten:
-      friendly_name: Schuur_buiten
       assumed_state: true
+      friendly_name: Schuur_buiten
       state: 'off'
     switch.tuin_lampjes:
-      friendly_name: Tuin_lampjes
       assumed_state: true
+      friendly_name: Tuin_lampjes
       state: 'off'
     switch.woonkmr_hektar3:
-      friendly_name: Woonkmr_hektar3
       assumed_state: true
+      friendly_name: Woonkmr_hektar3
       state: 'off'
     switch.woonkmr_hektar_bank:
-      friendly_name: Woonkmr_hektar_bank
       assumed_state: true
+      friendly_name: Woonkmr_hektar_bank
       state: 'off'
     switch.woonkmr_hektar_mid:
-      friendly_name: Woonkmr_hektar_mid
       assumed_state: true
+      friendly_name: Woonkmr_hektar_mid
       state: 'off'
     switch.woonkmr_knubbig:
-      friendly_name: Woonkmr_knubbig
       assumed_state: true
+      friendly_name: Woonkmr_knubbig
       state: 'off'
     light.lsc_e14_cwww_01:
-      min_mireds: 370.3704
-      max_mireds: 555.5555
+      restored: true
+      min_color_temp_kelvin: 1800
+      max_color_temp_kelvin: 2699
+      min_mireds: 370
+      max_mireds: 555
       supported_color_modes:
       - color_temp
       friendly_name: lsc_e14_cwww_01
       supported_features: 40
-      state: 'off'
+      state: unavailable
     light.lampen_tafel_woonkamer:
-      min_mireds: 370.3704
-      max_mireds: 555.5555
+      min_color_temp_kelvin: 1800
+      max_color_temp_kelvin: 2699
+      min_mireds: 370
+      max_mireds: 555
       supported_color_modes:
       - color_temp
       entity_id:
       - light.lsc_e27_cwww_01
       - light.lsc_e27_cwww_02
       - light.lsc_e27_cwww_03
-      friendly_name: Lampen Tafel Woonkamer
       icon: mdi:lightbulb-group
+      friendly_name: Lampen Tafel Woonkamer
       supported_features: 40
       state: 'off'
     light.ledstrip01:
@@ -254,3 +255,10 @@
       friendly_name: Ledstrip01
       supported_features: 44
       state: 'off'
+    switch.grote_knubbig:
+      assumed_state: true
+      friendly_name: Grote Knubbig
+      state: 'on'
+  metadata:
+    switch.grote_knubbig:
+      entity_only: true
